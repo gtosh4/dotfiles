@@ -1,0 +1,39 @@
+# git
+alias gits='git status'
+alias gitb='git branch'
+alias gitco='git checkout'
+alias gitsb='git show-branch'
+alias gitcob='git checkout -tb'
+alias gitpr='git pull --rebase'
+
+alias cd='pushd'
+alias cd-='popd'
+
+alias grep='grep --color=auto'
+
+alias rm='rm --preserve-root'
+
+alias tma='tmux attach'
+
+alias sshak='ssh Gordon@akasha'
+
+## ls
+alias ls='ls -FB --color=auto --group-directories-first'
+alias l='ls -ht'
+alias la='l -A'
+
+## Command line head / tail shortcuts
+alias -g H='| head'
+alias -g T='| tail'
+alias -g G='| grep'
+alias -g L="| less"
+alias -g NUL="> /dev/null 2>&1"
+alias lf='less +F'
+alias -g LF="| lf"
+
+## files
+alias dud='du --max-depth=1 -h'
+alias duf='du -sh *'
+alias fd='find . -type d -name'
+alias ff='find . -type f -name'
+
