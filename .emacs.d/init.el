@@ -163,11 +163,13 @@
 (global-set-key (kbd "M-[ d") 'backward-word)
 (global-set-key (kbd "C-l") 'goto-line)
 (global-set-key (kbd "C-x C-b") 'electric-buffer-list)
+(global-set-key (kbd "C-k") 'recenter)
 
 ;; Misc settings
 (delete-selection-mode 1)
 (setq
  vc-follow-symlinks t
+ scroll-conservatively 0
 )
 
 (custom-set-variables
