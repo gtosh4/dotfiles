@@ -1,3 +1,19 @@
+;; Packages
+(require 'package)
+(setq package-list '(auto-complete clojure-mode color-theme color-theme-solarized flycheck pylint))
+
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+(package-initialize)
+
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
 ;; Smart-home
 (defun smart-beginning-of-line ()
   "Move point to first non-whitespace character or beginning-of-line."
@@ -65,14 +81,15 @@
 
 ;; Misc line settings
 (global-linum-mode 1)
-(setq linum-format "%4d ")
-(setq line-move-visual nil)
+(setq
+ linum-format "%4d "
+ line-move-visual nil)
 (global-visual-line-mode 1)
 
 ;; line highlighting
 (global-hl-line-mode 1)
-(set-face-background 'hl-line "gray13")
-(set-face-foreground 'highlight nil)
+;;(set-face-background 'hl-line "gray13")
+;;(set-face-foreground 'highlight nil)
 
 (setq-default indent-tabs-mode nil)
 (setq tab-width 4)
@@ -80,26 +97,6 @@
 ;; auto-complete
 (require 'auto-complete-config)
 (global-auto-complete-mode t)
-
-;; Marmalade
-(require 'package)
-(setq package-list '(auto-complete clojure-mode color-theme color-theme-solarized flycheck pylint python-mode))
-
-; list the repositories containing them
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
-; activate all the packages (in particular autoloads)
-(package-initialize)
-
-; fetch the list of packages available 
-(unless package-archive-contents
-  (package-refresh-contents))
-
-; install the missing packages
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
 
 ;; Turn Menu Bar off
 (menu-bar-mode -1)
@@ -127,7 +124,8 @@
   (untabify (point-min) (point-max)))
 
 ;; Color theme
-(load-theme 'solarized-dark t)
+(color-theme-initialize)
+(color-theme-solarized-dark)
 
 ;; Flymake
 (when (load "flymake" t)
@@ -168,3 +166,19 @@
 
 ;; Misc settings
 (delete-selection-mode 1)
+(setq
+ vc-follow-symlinks t
+)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
