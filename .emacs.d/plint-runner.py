@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 import os
 import re
 import sys
@@ -55,7 +57,7 @@ class LintRunner(object):
                                         'filename', 'line_number'),
                                        '')
             fixed_data.update(cls.fixup_data(line, m.groupdict()))
-            print cls.output_format % fixed_data
+            print(cls.output_format % fixed_data)
 
     def run(self, filename):
         args = [self.command]
@@ -194,9 +196,9 @@ if __name__ == '__main__':
                           ignore_codes=options.ignore_codes)
     pylint.run(args[0])
 
-    pychecker = PycheckerRunner(virtualenv=options.virtualenv,
-                                ignore_codes=options.ignore_codes)
-    pychecker.run(args[0])
+    #pychecker = PycheckerRunner(virtualenv=options.virtualenv,
+                                #ignore_codes=options.ignore_codes)
+    #pychecker.run(args[0])
 
     pep8 = Pep8Runner(virtualenv=options.virtualenv,
                       ignore_codes=options.ignore_codes)
