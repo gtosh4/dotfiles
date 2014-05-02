@@ -6,6 +6,7 @@ ln -s -t ~ \
 ~/dotfiles/.Xresources \
 ~/dotfiles/.aliases \
 ~/dotfiles/.tmux.conf \
+~/dotfiles/.pylintrc
 
 # Cover our X defaults/resources bases
 ln -s .Xresources ~/.Xdefaults
