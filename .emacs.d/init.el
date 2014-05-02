@@ -1,6 +1,6 @@
 ;; Packages
 (require 'package)
-(setq package-list '(auto-complete clojure-mode color-theme color-theme-solarized flycheck pylint))
+(setq package-list '(auto-complete clojure-mode color-theme color-theme-solarized flycheck))
 
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -127,35 +127,11 @@
 (color-theme-initialize)
 (color-theme-solarized-dark)
 
-;; Flymake
-(when (load "flymake" t)
-  (defun flymake-pylint-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-           (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-      (list "epylint" (list local-file))))
+;; Flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(setq flycheck-pylintrc "~/.pylintrc")
 
-(add-hook 'c++-mode-hook 
-   '(lambda () 
-      (flymake-mode t)
-))
-
-(add-hook 'python-mode-hook 
-   '(lambda () 
-      (flymake-mode t)
-))
-
-(add-to-list 'flymake-allowed-file-name-masks
-    '("\\.py\\'" flymake-pylint-init)))
-
-(defun my-flymake-show-next-error()
-  (interactive)
-  (flymake-goto-next-error)
-  (flymake-display-err-menu-for-current-line))
-
-(global-set-key (kbd "C-p") 'my-flymake-show-next-error)
+(global-set-key (kbd "C-p") 'next-error)
 
 ;; Misc keybindings
 (global-set-key (kbd "C-d") 'kill-whole-line)
