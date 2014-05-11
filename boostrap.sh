@@ -21,3 +21,6 @@ ln -s ~/dotfiles/.fonts .fonts
 # Solarized
 git clone https://github.com/altercation/solarized.git ~/solarized
 git clone https://github.com/seebi/dircolors-solarized ~/solarized/dircolors-solarized
+
+# Oh My Zsh
+git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
