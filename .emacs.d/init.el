@@ -131,7 +131,8 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (setq flycheck-pylintrc "~/.pylintrc")
 
-(global-set-key (kbd "C-p") 'next-error)
+(global-set-key (kbd "C-n") 'next-error)
+(global-set-key (kbd "C-p") 'previous-error)
 
 ;; Misc keybindings
 (global-set-key (kbd "C-d") 'kill-whole-line)
