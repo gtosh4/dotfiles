@@ -49,6 +49,8 @@ export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/s
 
 export EDITOR='emacsclient -t'
 alias e='emacsclient -t'
+export SUDO_EDITOR="$EDITOR"
+alias E='sudo -e'
 export PAGER='less -R'
 
 [[ -e ~/.aliases ]] && source ~/.aliases
