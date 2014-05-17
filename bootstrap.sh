@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DOTFILES=$(dirname $0)
+DOTFILES=$(readlink -f $0)
 
 # Link dot files
 ln -s -t ~ \
