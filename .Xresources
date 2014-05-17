@@ -69,7 +69,7 @@
 *color14:                 S_base1
 *color15:                 S_base3
 
-
+URxvt*saveLine:         0 ! use tmux to manage history
 URxvt*scrollBar:        false
 URxvt*matcher.button:   1
 URxvt.transparent:      false
