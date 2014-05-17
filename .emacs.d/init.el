@@ -129,7 +129,12 @@
 
 ;; Color theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/solarized/" t)
-(load-theme 'solarized-dark t)
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+        (lambda (frame)
+            (with-selected-frame frame
+                (load-theme 'solarized-dark t))))
+    (load-theme 'solarized-dark t))
 
 ;; Flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
