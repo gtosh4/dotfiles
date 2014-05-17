@@ -1,0 +1,5 @@
+#!/bin/sh
+
+URXVT='/usr/bin/urxvt'
+[ -e /usr/bin/urxvtcd ] && URXVT='/usr/bin/urxvtcd'
+gsettings set org.gnome.desktop.default-applications.terminal exec $URXVT

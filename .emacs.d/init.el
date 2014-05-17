@@ -1,6 +1,9 @@
 ;; Packages
 (require 'package)
-(setq package-list '(auto-complete clojure-mode color-theme color-theme-solarized flycheck))
+(setq package-list '(
+                     auto-complete
+                     clojure-mode
+                     flycheck))
 
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -13,6 +16,8 @@
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
+
+(add-to-list 'load-path "~/.emacs.d/custom/")
 
 ;; Smart-home
 (defun smart-beginning-of-line ()
@@ -84,7 +89,7 @@
 (setq
  linum-format "%4d "
  line-move-visual nil)
-(global-visual-line-mode 1)
+(global-visual-line-mode 1) ; wrap long lines
 
 ;; line highlighting
 (global-hl-line-mode 1)
@@ -107,7 +112,6 @@
       backup-by-copying t               ; don't clobber symlinks
       version-control t                 ; version numbers for backup files
       delete-old-versions t             ; delete excess backup files silently
-      delete-by-moving-to-trash t
       kept-old-versions 6               ; oldest versions to keep when a new numbered backup is made (default: 2)
       kept-new-versions 9               ; newest versions to keep when a new numbered backup is made (default: 2)
       auto-save-default t               ; auto-save every buffer that visits a file
@@ -124,8 +128,8 @@
   (untabify (point-min) (point-max)))
 
 ;; Color theme
-(color-theme-initialize)
-(color-theme-solarized-dark)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/solarized/" t)
+(load-theme 'solarized-dark t)
 
 ;; Flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -161,3 +165,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(provide 'init)
+;;; init.el ends here

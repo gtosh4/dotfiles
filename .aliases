@@ -6,6 +6,7 @@ alias gitsb='git show-branch'
 alias gitcob='git checkout -tb'
 alias gitpr='git pull --rebase'
 
+# cd
 alias cd='pushd'
 alias cd-='popd'
 
@@ -13,9 +14,9 @@ alias grep='grep --color=auto'
 
 alias rm='rm --preserve-root'
 
+# tmux
+alias tmux'tmux -2'
 alias tma='tmux attach'
-
-alias sshak='ssh Gordon@akasha'
 
 ## ls
 alias ls='ls -FB --color=auto --group-directories-first'

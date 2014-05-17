@@ -45,7 +45,7 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/bin
+export PATH=$PATH:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/bin
 
 export EDITOR='emacsclient -t'
 alias e='emacsclient -t'
@@ -69,7 +69,7 @@ case $TERM in
         ;;
 esac
 
-eval $(dircolors ~/solarized/dircolors-solarized/dircolors.256dark)
+eval $(dircolors ~/.dircolors-solarized/dircolors.ansi-dark)
 
 function chpwd() {
     emulate -L zsh
