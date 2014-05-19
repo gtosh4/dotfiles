@@ -3,8 +3,7 @@
 (setq package-list '(
                      auto-complete
                      clojure-mode
-                     flycheck
-                     uniquify))
+                     flycheck))
 
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
