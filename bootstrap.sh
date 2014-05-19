@@ -35,4 +35,4 @@ ln -s $DOTFILES/gg-clean.zsh-theme ~/.oh-my-zsh/custom/ 2> /dev/null
 # Add update to crontab
 command="~/bin/update-dotfiles.sh"
 job="0 0 * * * $command > $DOTFILES/autoupdate.log"
-echo "$(crontab -l | fgrep -v $command)\n$job" | crontab -
+echo -e "$(crontab -l | fgrep -v $command)\n$job" | crontab -
