@@ -25,11 +25,11 @@ ln -s -d ~/.emacs.d $DOTFILES/.emacs.d/* 2> /dev/null
 ln -s $DOTFILES/.fonts ~/.fonts 2> /dev/null
 
 # Solarized
-[ ! -d ~/.emacs.d/solarized ] && git clone custom-theme-load-path ~/.emacs.d/solarized
-[ ! -d ~/.dircolors-solarized ] && git clone https://github.com/seebi/dircolors-solarized ~/.dircolors-solarized
+[ ! -d ~/.emacs.d/solarized ] && git clone --depth 1 git://github.com/sellout/emacs-color-theme-solarized.git ~/.emacs.d/solarized
+[ ! -d ~/.dircolors-solarized ] && git clone --depth 1 git://github.com/seebi/dircolors-solarized.git ~/.dircolors-solarized
 
 # Oh My Zsh
-[ ! -d ~/.oh-my-zsh ] && git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+[ ! -d ~/.oh-my-zsh ] && git clone --depth git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 ln -s $DOTFILES/gg-clean.zsh-theme ~/.oh-my-zsh/custom/ 2> /dev/null
 
 # Add update to crontab
