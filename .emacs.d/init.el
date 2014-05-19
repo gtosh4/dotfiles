@@ -3,7 +3,8 @@
 (setq package-list '(
                      auto-complete
                      clojure-mode
-                     flycheck))
+                     flycheck
+                     uniquify))
 
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -18,6 +19,10 @@
     (package-install package)))
 
 (add-to-list 'load-path "~/.emacs.d/custom/")
+
+;; Uniquify
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
 
 ;; Smart-home
 (defun smart-beginning-of-line ()
@@ -156,7 +161,12 @@
 (setq
  vc-follow-symlinks t
  scroll-conservatively 0
+ debug-on-error t
+ create-lockfiles nil
+ x-select-enable-clipboard t
+ x-select-enable-primary t
 )
+(show-paren-mode 1)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
