@@ -8,7 +8,8 @@ ln -s -t ~ \
     $DOTFILES/.Xresources \
     $DOTFILES/.aliases \
     $DOTFILES/.tmux.conf \
-    $DOTFILES/.pylintrc
+    $DOTFILES/.pylintrc \
+    $DOTFILES/.globalrc
 
 # Link all scripts to bin
 [ ! -d ~/bin ] && mkdir ~/bin
@@ -22,7 +23,15 @@ ln -s .Xresources ~/.Xdefaults
 ln -s -t ~/.emacs.d $DOTFILES/.emacs.d/*
 
 # Fonts
-ln -s $DOTFILES/.fonts ~/.fonts
+[ ! -d ~/.fonts ] && mkdir ~/.fonts
+ln -s -t ~/.fonts $DOTFILES/.fonts/*
+
+# terminfo
+[ ! -d ~/.terminfo ] && mkdir ~/.terminfo
+for dir in $(ls $DOTFILES/.terminfo); do
+    [ ! -d ~/.terminfo/$dir ] && mkdir ~/.terminfo/$dir
+    ln -s -t ~/.terminfo/$dir $DOTFILES/.terminfo/$dir/*
+done
 
 # Solarized
 [ ! -d ~/.emacs.d/solarized ] && git clone --depth 1 git://github.com/sellout/emacs-color-theme-solarized.git ~/.emacs.d/solarized
@@ -32,7 +41,15 @@ ln -s $DOTFILES/.fonts ~/.fonts
 [ ! -d ~/.oh-my-zsh ] && git clone --depth git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 ln -s $DOTFILES/gg-clean.zsh-theme ~/.oh-my-zsh/custom/
 
+# Python virtualenv setup
+if [ ! -d ~/local/py-env ]; then
+    [ ! -d ~/local ] && mkdir ~/local
+    virtualenv ~/local/py-env
+    source ~/local/py-env/bin/activate
+fi
+
 # Add update to crontab
 command="~/bin/update-dotfiles.sh"
 job="0 0 * * * $command > $DOTFILES/autoupdate.log"
-echo -e "$(crontab -l | fgrep -v $command)\n$job" | crontab -
+# Don't use the shell built-in echo so we get consistent behaviour across envs
+/bin/echo -e "$(crontab -l | fgrep -v $command)\n$job" | crontab -

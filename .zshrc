@@ -40,6 +40,8 @@ case $TERM in
         ;;
 esac
 
+[[ -e ~/local/py-env/bin/activate ]] && source ~/local/py-env/bin/activate
+
 eval $(dircolors ~/.dircolors-solarized/dircolors.ansi-dark)
 
 function chpwd() {
