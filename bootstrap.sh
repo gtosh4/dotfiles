@@ -8,21 +8,21 @@ ln -s -t ~ \
     $DOTFILES/.Xresources \
     $DOTFILES/.aliases \
     $DOTFILES/.tmux.conf \
-    $DOTFILES/.pylintrc 2> /dev/null
+    $DOTFILES/.pylintrc
 
 # Link all scripts to bin
 [ ! -d ~/bin ] && mkdir ~/bin
-ln -s -t ~/bin $DOTFILES/bin/* 2> /dev/null
+ln -s -t ~/bin $DOTFILES/bin/*
 
 # Cover our X defaults/resources bases
-ln -s .Xresources ~/.Xdefaults 2> /dev/null
+ln -s .Xresources ~/.Xdefaults
 
 # Emacs init.el
 [ ! -d ~/.emacs.d ] && mkdir ~/.emacs.d
-ln -s -d ~/.emacs.d $DOTFILES/.emacs.d/* 2> /dev/null
+ln -s -t ~/.emacs.d $DOTFILES/.emacs.d/*
 
 # Fonts
-ln -s $DOTFILES/.fonts ~/.fonts 2> /dev/null
+ln -s $DOTFILES/.fonts ~/.fonts
 
 # Solarized
 [ ! -d ~/.emacs.d/solarized ] && git clone --depth 1 git://github.com/sellout/emacs-color-theme-solarized.git ~/.emacs.d/solarized
@@ -30,7 +30,7 @@ ln -s $DOTFILES/.fonts ~/.fonts 2> /dev/null
 
 # Oh My Zsh
 [ ! -d ~/.oh-my-zsh ] && git clone --depth git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-ln -s $DOTFILES/gg-clean.zsh-theme ~/.oh-my-zsh/custom/ 2> /dev/null
+ln -s $DOTFILES/gg-clean.zsh-theme ~/.oh-my-zsh/custom/
 
 # Add update to crontab
 command="~/bin/update-dotfiles.sh"
