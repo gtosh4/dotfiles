@@ -24,3 +24,7 @@ do
 
     echo
 done
+
+# Re-run boostrap if there were changes made we want to get the new files
+# It is idempotent so we are safe to run it even if there were no changes
+exec $DOTFILES/bootstrap.sh
