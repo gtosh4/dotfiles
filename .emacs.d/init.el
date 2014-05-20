@@ -34,8 +34,7 @@
 
 (global-set-key [home] 'smart-beginning-of-line)
 
-;; Tags
-
+;; Semantic Mode
 (semantic-mode 1)
 (global-semantic-show-unmatched-syntax-mode 1)
 (add-to-list 'semantic-default-submodes 'global-semantic-decoration-mode)
@@ -53,8 +52,6 @@
 
 ;; line highlighting
 (global-hl-line-mode 1)
-;;(set-face-background 'hl-line "gray13")
-;;(set-face-foreground 'highlight nil)
 
 (setq-default indent-tabs-mode nil)
 (setq tab-width 4)
