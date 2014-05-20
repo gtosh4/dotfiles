@@ -50,6 +50,6 @@ fi
 
 # Add update to crontab
 command="~/bin/update-dotfiles.sh"
-job="0 0 * * * $command > $DOTFILES/autoupdate.log"
+job="0 0 * * * $command > $DOTFILES/autoupdate.log 2>&1"
 # Don't use the shell built-in echo so we get consistent behaviour across envs
 /bin/echo -e "$(crontab -l | fgrep -v $command)\n$job" | crontab -
