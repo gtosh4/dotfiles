@@ -3,6 +3,7 @@
 (setq package-list '(
                      auto-complete
                      clojure-mode
+                     scala-mode
                      flycheck))
 
 (add-to-list 'package-archives
