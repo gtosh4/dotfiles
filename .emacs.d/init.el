@@ -35,6 +35,15 @@
 
 (global-set-key [home] 'smart-beginning-of-line)
 
+;; ggtags
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+              (ggtags-mode 1))))
+(add-hook 'python-mode-hook
+          (lambda ()
+            (ggtags-mode 1)))
+
 ;; Semantic Mode
 (semantic-mode 1)
 (global-semantic-show-unmatched-syntax-mode 1)
@@ -108,6 +117,7 @@
 (global-set-key (kbd "C-l") 'goto-line)
 (global-set-key (kbd "C-x C-b") 'electric-buffer-list)
 (global-set-key (kbd "C-k") 'recenter)
+(global-unset-key (kbd "C-z")) ; stop the fat-finger C-z suspending
 
 ;; Misc settings
 (delete-selection-mode 1)
