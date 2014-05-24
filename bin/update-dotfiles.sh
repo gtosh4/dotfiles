@@ -5,6 +5,8 @@ DOTFILES=$(dirname $DOTFILES_BIN)
 EMACS_SOLARIZED="$HOME/.emacs.d/solarized"
 DIRCOL_SOLARIZED="$HOME/.dircolors-solarized"
 
+echo "Updating dotfiles (date: $(date))"
+
 for git in $DOTFILES $EMACS_SOLARIZED $DIRCOL_SOLARIZED
 do
     echo "Moving to $git"
