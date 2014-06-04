@@ -19,9 +19,9 @@ alias tmux'tmux -2'
 alias tma='tmux attach'
 
 ## ls
-alias ls='ls -FB --color=auto --group-directories-first'
+alias ls='ls -FB --color=auto' # --group-directories-first'
 alias l='ls -ht'
-alias la='l -A'
+alias la='ls -A'
 
 ## Command line head / tail shortcuts
 alias -g H='| head'
