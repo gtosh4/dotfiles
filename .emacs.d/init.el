@@ -63,9 +63,6 @@
 ;; line highlighting
 (global-hl-line-mode 1)
 
-(setq-default indent-tabs-mode nil)
-(setq tab-width 4)
-
 ;; auto-complete
 (require 'auto-complete-config)
 (global-auto-complete-mode t)
@@ -86,13 +83,16 @@
       auto-save-interval 200            ; number of keystrokes between auto-saves (default: 300)
       )
 
-;; Ident whole buffer
+;; Indentation
 (defun iwb ()
   "indent whole buffer"
   (interactive)
   (delete-trailing-whitespace)
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
+
+(setq-default indent-tabs-mode nil)
+(setq tab-width 4)
 
 ;; Color theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/solarized/" t)
@@ -109,6 +109,9 @@
 
 (global-set-key (kbd "C-n") 'next-error)
 (global-set-key (kbd "C-p") 'previous-error)
+
+;; Scala mode
+(add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
 
 ;; Misc keybindings
 (global-set-key (kbd "C-d") 'kill-whole-line)
