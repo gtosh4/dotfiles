@@ -110,8 +110,13 @@
 (global-set-key (kbd "C-n") 'next-error)
 (global-set-key (kbd "C-p") 'previous-error)
 
-;; Scala mode
+;; Scala
 (add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
+
+;; Java
+(defun java-arglist-intro ()
+      (c-set-offset 'arglist-intro '++))
+(add-hook 'java-mode-hook 'java-arglist-intro)
 
 ;; Misc keybindings
 (global-set-key (kbd "C-d") 'kill-whole-line)
