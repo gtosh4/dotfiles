@@ -1,6 +1,6 @@
 # git
 alias gits='git status'
-alias gitb='git branch'
+alias gitb='git branch -vv'
 alias gitco='git checkout'
 alias gitsb='git show-branch'
 alias gitcob='git checkout -tb'
