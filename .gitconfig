@@ -1,0 +1,23 @@
+[alias]
+    s = status
+    c = commit
+    co = checkout
+    l = log --graph --pretty=simple --all --not --remotes
+    b = branch
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    ui = auto
+[core]
+    excludesfile = ~/.gitignore_global
+    pager = less -FMRiX
+[branch]
+    autosetupmerge = always
+    autosetuprebase = always
+[push]
+    default = upstream
+[pretty]
+    simple=%C(auto)%h%d [%ar] %s - %cn
+[include]
+    path=.gitconfig_sys
