@@ -5,6 +5,8 @@ alias gitco='git checkout'
 alias gitsb='git show-branch'
 alias gitcob='git checkout -tb'
 alias gitpr='git pull --rebase'
+alias gitprs='git pull --rebase && clear && git status'
+alias gitl='git l'
 
 # cd
 alias cd='pushd'
