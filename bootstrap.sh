@@ -9,7 +9,8 @@ ln -s -t ~ \
     $DOTFILES/.aliases \
     $DOTFILES/.tmux.conf \
     $DOTFILES/.pylintrc \
-    $DOTFILES/.globalrc
+    $DOTFILES/.globalrc \
+    $DOTFILES/.gitconfig
 
 # Link all scripts to bin
 [ ! -d ~/bin ] && mkdir ~/bin
