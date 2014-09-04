@@ -121,7 +121,7 @@
 ;; Misc keybindings
 (global-set-key (kbd "C-d") 'kill-whole-line)
 (global-set-key (kbd "M-[ C") 'forward-word)
-(global-set-key (kbd "M-[ d") 'backward-word)
+(global-set-key (kbd "M-[ D") 'backward-word)
 (global-set-key (kbd "C-l") 'goto-line)
 (global-set-key (kbd "C-x C-b") 'electric-buffer-list)
 (global-set-key (kbd "C-k") 'recenter)
