@@ -71,7 +71,7 @@
 (menu-bar-mode -1)
 
 ;; Autosave settings
-(setq backup-directory-alist `(("." . "~/.autosave")))
+(setq backup-directory-alist `((".*" . "~/.autosave")))
 (setq make-backup-files t               ; backup of a file the first time it is saved.
       backup-by-copying t               ; don't clobber symlinks
       version-control t                 ; version numbers for backup files
