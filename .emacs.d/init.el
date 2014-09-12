@@ -45,19 +45,33 @@
             (ggtags-mode 1)))
 
 ;; Semantic Mode
+(require 'semantic/ia)
 (semantic-mode 1)
 (global-semantic-show-unmatched-syntax-mode 1)
 (add-to-list 'semantic-default-submodes 'global-semantic-decoration-mode)
 (add-to-list 'semantic-default-submodes 'global-semantic-idle-local-symbol-highlight-mode)
 (add-to-list 'semantic-default-submodes 'global-semantic-idle-scheduler-mode)
 (add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode)
-(require 'semantic/ia)
 
 ;; Misc line settings
+(eval-after-load 'linum
+  '(progn
+     (defface linum-leading-zero
+       `((t :inherit 'linum
+            :foreground ,(face-attribute 'linum :background nil t)))
+       "Face for displaying leading zeroes for line numbers in display margin."
+       :group 'linum)
+
+     (defun linum-format-func (line)
+       (let ((w (length
+                 (number-to-string (count-lines (point-min) (point-max))))))
+         (concat
+          (propertize (make-string (- w (length (number-to-string line))) ?0)
+                      'face 'linum-leading-zero)
+          (propertize (concat (number-to-string line) " ") 'face 'linum))))
+
+     (setq linum-format 'linum-format-func)))
 (global-linum-mode 1)
-(setq
- linum-format "%4d "
- line-move-visual nil)
 (global-visual-line-mode 1) ; wrap long lines
 
 ;; line highlighting
@@ -122,9 +136,9 @@
 (global-set-key (kbd "C-d") 'kill-whole-line)
 (global-set-key (kbd "M-[ C") 'forward-word)
 (global-set-key (kbd "M-[ D") 'backward-word)
-(global-set-key (kbd "C-l") 'goto-line)
-(global-set-key (kbd "C-x C-b") 'electric-buffer-list)
-(global-set-key (kbd "C-k") 'recenter)
+(global-set-key (kbd "C-l") 'goto-line) ; eclipse muscle memory
+(global-set-key (kbd "C-x C-b") 'electric-buffer-list) ; replace buffer list with better one
+(global-set-key (kbd "C-k") 'recenter) ; rebind from C-l
 (global-unset-key (kbd "C-z")) ; stop the fat-finger C-z suspending
 
 ;; Misc settings
