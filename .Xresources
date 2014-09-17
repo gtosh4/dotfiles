@@ -28,7 +28,7 @@
 *background:              #002b36
 ! S_base0
 *foreground:              #839496
-*fading:                  40
+*fading:                  10
 ! S_base03
 *fadeColor:               #002b36
 ! S_base1

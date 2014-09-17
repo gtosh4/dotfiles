@@ -19,6 +19,7 @@ export MANPATH=$MANPATH:$HOME/local/share/man
 export EDITOR='emacsclient -t'
 export ALTERNATE_EDITOR='emacs -nw'
 alias e='emacsclient -t'
+alias enw='emacs -nw'
 export SUDO_EDITOR="$EDITOR"
 alias E='sudo -e'
 export PAGER='less -R'
@@ -54,4 +55,4 @@ function chpwd() {
     ls
 }
 
-[[ type -t finalize_auto_reload ]] && finalize_auto_reload()
+type finalize_auto_reload >/dev/null && finalize_auto_reload

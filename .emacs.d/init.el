@@ -4,7 +4,8 @@
                      auto-complete
                      clojure-mode
                      scala-mode
-                     flycheck))
+                     flycheck
+                     ggtags))
 
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -36,13 +37,17 @@
 (global-set-key [home] 'smart-beginning-of-line)
 
 ;; ggtags
+(defun maybe-enable-ggtags-mode ()
+  (if (executable-find "global")
+      (ggtags-mode 1)
+    (message "global not found, not enabling ggtags-mode")))
 (add-hook 'c-mode-common-hook
           (lambda ()
             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
-              (ggtags-mode 1))))
+              (maybe-enable-ggtags-mode))))
 (add-hook 'python-mode-hook
           (lambda ()
-            (ggtags-mode 1)))
+            (maybe-enable-ggtags-mode)))
 
 ;; Semantic Mode
 (require 'semantic/ia)
@@ -54,8 +59,8 @@
 (add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode)
 
 ;; Misc line settings
-(eval-after-load 'linum
-  '(progn
+(defun set-linum-format ()
+  (progn
      (defface linum-leading-zero
        `((t :inherit 'linum
             :foreground ,(face-attribute 'linum :background nil t)))
@@ -71,6 +76,7 @@
           (propertize (concat (number-to-string line) " ") 'face 'linum))))
 
      (setq linum-format 'linum-format-func)))
+
 (global-linum-mode 1)
 (global-visual-line-mode 1) ; wrap long lines
 
@@ -114,7 +120,9 @@
     (add-hook 'after-make-frame-functions
         (lambda (frame)
             (with-selected-frame frame
-                (load-theme 'solarized-dark t))))
+                (progn 
+                  (load-theme 'solarized-dark t)
+                  (set-linum-format)))))
     (load-theme 'solarized-dark t))
 
 ;; Flycheck
@@ -150,8 +158,10 @@
  create-lockfiles nil
  x-select-enable-clipboard t
  x-select-enable-primary t
+ require-final-newline t
 )
 (show-paren-mode 1)
+(global-auto-revert-mode 1)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
