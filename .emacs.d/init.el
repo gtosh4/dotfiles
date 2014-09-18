@@ -2,10 +2,10 @@
 (require 'package)
 (setq package-list '(
                      auto-complete
+;                     ac-etags
                      clojure-mode
                      scala-mode
-                     flycheck
-                     ggtags))
+                     flycheck))
 
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -36,18 +36,17 @@
 
 (global-set-key [home] 'smart-beginning-of-line)
 
-;; ggtags
-(defun maybe-enable-ggtags-mode ()
-  (if (executable-find "global")
-      (ggtags-mode 1)
-    (message "global not found, not enabling ggtags-mode")))
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
-              (maybe-enable-ggtags-mode))))
-(add-hook 'python-mode-hook
-          (lambda ()
-            (maybe-enable-ggtags-mode)))
+;; auto-complete
+(require 'auto-complete-config)
+(global-auto-complete-mode t)
+
+;; Tags
+;(custom-set-variables
+;  '(ac-etags-requires 2))
+;(eval-after-load "etags"
+;  '(progn (ac-etags-setup)))
+'(add-hook 'c-mode-common-hook 'ac-etags-ac-setup)
+;(add-hook 'python-mode-hook 'ac-etags-ac-setup)
 
 ;; Semantic Mode
 (require 'semantic/ia)
@@ -82,10 +81,6 @@
 
 ;; line highlighting
 (global-hl-line-mode 1)
-
-;; auto-complete
-(require 'auto-complete-config)
-(global-auto-complete-mode t)
 
 ;; Turn Menu Bar off
 (menu-bar-mode -1)

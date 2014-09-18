@@ -15,6 +15,7 @@ zstyle ':completion:*' completer _complete _ignored _files
 
 export PATH=$PATH:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/bin:$HOME/local/bin
 export MANPATH=$MANPATH:$HOME/local/share/man
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/local/lib
 
 export EDITOR='emacsclient -t'
 export ALTERNATE_EDITOR='emacs -nw'
