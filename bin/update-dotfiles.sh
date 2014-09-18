@@ -20,7 +20,8 @@ do
 
     [ $has_changes -ne 0 ] && git stash save "Stash for auto-update pull"
 
-    echo "Updating $git"
+    git log --format="%C(auto)%h%d [%ar] %s - %cn" ...origin
+
     git pull -r
 
     [ $has_changes -ne 0 ] && git stash pop
