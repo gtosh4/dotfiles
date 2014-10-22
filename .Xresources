@@ -71,12 +71,15 @@
 ! S_base3
 *color15:                 #fdf6e3
 
-URxvt*saveLine:         0 ! use tmux to manage history
+! use tmux to manage history
+URxvt*saveLine:         0
 URxvt*scrollBar:        false
 URxvt*matcher.button:   1
 URxvt.transparent:      false
 URxvt*allow_bold:       true
 
+URxvt.modifier:        alt
+URxvt.iso14755_52:     false
 URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher:    /usr/bin/firefox
 URxvt.matcher.button:  1
