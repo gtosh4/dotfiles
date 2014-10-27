@@ -144,6 +144,10 @@
 (global-set-key (kbd "C-k") 'recenter) ; rebind from C-l
 (global-unset-key (kbd "C-z")) ; stop the fat-finger C-z suspending
 
+(add-hook 'java-mode-hook
+          (lambda()
+            (local-unset-key (kbd "C-d"))))
+
 ;; Misc settings
 (delete-selection-mode 1)
 (setq
