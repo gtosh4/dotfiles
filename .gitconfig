@@ -21,8 +21,10 @@
 [push]
     default = upstream
 [pretty]
-    simple=%C(auto)%h%d [%ar] %s - %cn
+    simple=%C(auto)%h%d [%ci] %s - %cn
 [diff]
     algorithm = patience
 [include]
     path=.gitconfig_sys
+[format]
+    pretty=simple

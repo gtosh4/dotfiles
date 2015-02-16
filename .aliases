@@ -7,17 +7,14 @@ alias gitcob='git checkout -tb'
 alias gitpr='git pull --rebase'
 alias gitprs='git pull --rebase && clear && git status'
 alias gitl='git l'
+alias gitrbi='git rebase -i'
 
 # cd
 alias cd='pushd'
 alias cd-='popd'
 
-alias grep='grep --color=auto'
-
-alias rm='rm --preserve-root'
-
 # tmux
-alias tmux'tmux -2'
+alias tmux='tmux -2'
 alias tma='tmux attach'
 
 ## ls
@@ -40,3 +37,6 @@ alias duf='du -sh *'
 alias fd='find . -type d -name'
 alias ff='find . -type f -name'
 
+## other
+alias grep='grep --color=auto'
+alias rm='rm --preserve-root'
