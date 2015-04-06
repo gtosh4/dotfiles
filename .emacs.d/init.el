@@ -36,6 +36,16 @@
 
 (global-set-key [home] 'smart-beginning-of-line)
 
+;; Backward delete word
+(defun backward-delete-word (arg)
+  "Delete characters backward until encountering the beginning of a word.
+With argument ARG, do this that many times."
+  (interactive "p")
+  (delete-region (point) (progn (backward-word arg) (point))))
+
+; See .Xresources: URxvt.keysym.C-BackSpace: \033[33~
+(global-set-key (kbd "S-<f9>") 'backward-delete-word)
+
 ;; auto-complete
 (require 'auto-complete-config)
 (global-auto-complete-mode t)

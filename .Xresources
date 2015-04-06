@@ -88,6 +88,8 @@ URxvt.colorUL:         #268bd2
 URxvt.letterSpace:     -1
 ! Use 16-color version since we are configuring correct solarized colors
 URxvt.termName:        rxvt-16color
+! Don't send c-h for c-backspace
+URxvt.keysym.C-BackSpace: \033[33~
 
 ! xterm Settings
 ! Use 16-color version since we are configuring correct solarized colors
