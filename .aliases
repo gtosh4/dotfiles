@@ -8,7 +8,7 @@ alias gitpr='git pull --rebase'
 alias gitprs='git pull --rebase && clear && git status'
 alias gitl='git l'
 alias gitrbi='git rebase -i'
-alias lgits='clear; git statis' # Forgot to use ctrl to clear
+alias lgits='clear; git status' # Forgot to use ctrl to clear
 
 # cd
 alias cd='pushd'
