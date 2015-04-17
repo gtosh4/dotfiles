@@ -90,13 +90,24 @@ URxvt.letterSpace:     -1
 URxvt.termName:        rxvt-16color
 ! Don't send c-h for c-backspace
 URxvt.keysym.C-BackSpace: \033[33~
+URxvt.font:            xft:Inconsolata\\-dz:size=8
+URxvt.cutchars: "()*,<>[]{}|'│:
 
 ! xterm Settings
 ! Use 16-color version since we are configuring correct solarized colors
 XTerm*termName:  xterm-16color
+XTerm*utf8: 2
+XTerm*saveLines: 0
+XTerm*scrollKey: false
+XTerm*scrollTtyOutput: false
+XTerm*scrollBar: false
+XTerm*borderWidth: 0
+XTerm*renderFont: true
+XTerm*faceName: Inconsolata\\-dz
+XTerm*faceSize: 8
+XTerm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
 
 ! XFT Settings
-*.font:            xft:Inconsolata\\-dz:size=8
 Xft.dpi: 96
 Xft.antialias: 1
 Xft.hinting:    1
