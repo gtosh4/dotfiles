@@ -47,14 +47,14 @@ ln -s ~/.mintty-solarized/.minttyrc.dark ~/.minttyrc
 ln -s $DOTFILES/gg-clean.zsh-theme ~/.oh-my-zsh/custom/
 
 # Python virtualenv setup
-if [ ! -d ~/local/py-env ]; then
+if [ ! -d ~/local/py-env ] && (type virtualenv >/dev/null 2>&1); then
     [ ! -d ~/local ] && mkdir ~/local
     virtualenv ~/local/py-env
     source ~/local/py-env/bin/activate
 fi
 
 # Add update to crontab
-command="~/bin/update-dotfiles.sh"
+command="$DOTFILES/bin/update-dotfiles.sh"
 job="0 0 * * * $command > $DOTFILES/autoupdate.log 2>&1"
 # Don't use the shell built-in echo so we get consistent behaviour across envs
-/bin/echo -e "$(crontab -l | fgrep -v $command)\n$job" | crontab -
+/bin/echo -e "$(crontab -l | fgrep -v update-dotfiles)\n$job" | crontab -
