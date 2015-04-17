@@ -13,9 +13,6 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 zstyle ':completion:*' completer _complete _ignored _files
 
-export PATH=$PATH:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$HOME/bin:$HOME/local/bin
-export MANPATH=$MANPATH:$HOME/local/share/man
-
 export EDITOR='emacsclient -t -a ""'
 alias e="$EDITOR"
 alias enw='emacs -nw'

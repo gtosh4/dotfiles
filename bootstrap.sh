@@ -4,7 +4,8 @@ DOTFILES=$(dirname $(readlink -f -n $0))
 
 # Link dot files
 ln -s -t ~ \
-    ~/dotfiles/.zshrc \
+    $DOTFILES/.zshrc \
+    $DOTFILES/.profile \
     $DOTFILES/.Xresources \
     $DOTFILES/.aliases \
     $DOTFILES/.tmux.conf \
