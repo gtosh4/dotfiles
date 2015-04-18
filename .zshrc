@@ -1,5 +1,6 @@
 [[ -e ~/.aliases ]] && source ~/.aliases
 [[ -e ~/.zshsys ]] && source ~/.zshsys
+[[ -e ~/.zshkeys ]] && source ~/.zshkeys
 
 ZSH=$HOME/.oh-my-zsh
 
@@ -19,24 +20,6 @@ alias enw='emacs -nw'
 export SUDO_EDITOR="$EDITOR"
 alias E='sudo -e'
 export PAGER='less -R'
-
-bindkey '^[[3~' delete-char
-bindkey '^[3;5~' delete-char
-
-case $TERM in
-    *rxvt*)
-        bindkey "\e[7~" beginning-of-line
-        bindkey "\e[8~" end-of-line
-        ;;
-    screen*)
-        bindkey '^[[1~' beginning-of-line
-        bindkey '^[[4~' end-of-line
-        ;;
-    xterm*)
-        bindkey '^[[7~' beginning-of-line
-        bindkey '^[[8~' end-of-line
-        ;;
-esac
 
 if [ -e ~/local/py-env/bin/activate ]; then
     # Doesn't matter what this is set to as long as it's not empty

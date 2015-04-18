@@ -5,6 +5,7 @@ DOTFILES=$(dirname $(readlink -f -n $0))
 # Link dot files
 ln -s -t ~ \
     $DOTFILES/.zshrc \
+    $DOTFILES/.zshkeys \
     $DOTFILES/.zprofile \
     $DOTFILES/.gnomerc \
     $DOTFILES/.Xresources \
