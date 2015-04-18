@@ -34,6 +34,20 @@ key[PageDown]=${terminfo[knp]}
 [[ -n "${key[SRight]}"   ]]  && bindkey  "${key[SRight]}"  emacs-forward-word
 
 # explicit key binds
+case $TERM in 
+    *rxvt*) 
+	bindkey '\eOd' emacs-backward-word
+	bindkey '\eOc' emacs-forward-word
+	;;
+    screen*)
+	bindkey '\e[D' emacs-backward-word
+	bindkey '\e[C' emacs-forward-word
+	;; 
+    xterm*) 
+	bindkey '\e[1;5D' emacs-backward-word
+	bindkey '\e[1;5C' emacs-forward-word
+	;; 
+esac
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
