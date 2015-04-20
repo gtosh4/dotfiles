@@ -40,11 +40,11 @@ done
 # Solarized
 [ ! -d ~/.emacs.d/solarized ] && git clone --depth 1 git://github.com/sellout/emacs-color-theme-solarized.git ~/.emacs.d/solarized
 [ ! -d ~/.dircolors-solarized ] && git clone --depth 1 git://github.com/seebi/dircolors-solarized.git ~/.dircolors-solarized
-[ ! -d ~/.mintty-solarized ] && git clone --depth 1 git@github.com:mavnn/mintty-colors-solarized.git ~/.mintty-solarized
+[ ! -d ~/.mintty-solarized ] && git clone --depth 1 git://github.com/mavnn/mintty-colors-solarized.git ~/.mintty-solarized
 ln -s ~/.mintty-solarized/.minttyrc.dark ~/.minttyrc
 
 # Oh My Zsh
-[ ! -d ~/.oh-my-zsh ] && git clone --depth git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+[ ! -d ~/.oh-my-zsh ] && git clone --depth 1 git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 ln -s $DOTFILES/gg-clean.zsh-theme ~/.oh-my-zsh/custom/
 
 # Python virtualenv setup
