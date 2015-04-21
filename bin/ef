@@ -1,0 +1,14 @@
+#! /usr/bin/env sh
+
+dir='.'
+if [ "$#" -gt 1 ]; then dir="$1"; shift; fi
+name="$1"
+#echo $dir
+files=$(find $dir -type f -iname "$name*" -not -name '#*' -and -not -name '*~' 2> /dev/null)
+#echo $files
+firstfile=$(echo "$files" | head -n1)
+[[ ! -e "$firstfile" ]] && echo "File not found: $1 in $dir" >&2 && exit 1
+#echo $firstfile
+com="$EDITOR $firstfile"
+#echo $com
+eval $com
