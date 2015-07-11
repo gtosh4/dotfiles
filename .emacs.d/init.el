@@ -1,11 +1,15 @@
 ;; Packages
 (require 'package)
-(setq package-list '(
+
+(defvar user-package-list '(
                      auto-complete
 ;                     ac-etags
                      clojure-mode
                      scala-mode
-                     flycheck))
+                     flycheck
+                     helm
+                     rainbow-delimiters
+))
 
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -15,7 +19,7 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-(dolist (package package-list)
+(dolist (package user-package-list)
   (unless (package-installed-p package)
     (package-install package)))
 
@@ -47,6 +51,7 @@ With argument ARG, do this that many times."
 (global-set-key (kbd "S-<f9>") 'backward-delete-word)
 
 ;; auto-complete
+(require 'auto-complete)
 (require 'auto-complete-config)
 (global-auto-complete-mode t)
 
@@ -55,7 +60,7 @@ With argument ARG, do this that many times."
 ;  '(ac-etags-requires 2))
 ;(eval-after-load "etags"
 ;  '(progn (ac-etags-setup)))
-'(add-hook 'c-mode-common-hook 'ac-etags-ac-setup)
+;'(add-hook 'c-mode-common-hook 'ac-etags-ac-setup)
 ;(add-hook 'python-mode-hook 'ac-etags-ac-setup)
 
 ;; Semantic Mode
@@ -121,14 +126,20 @@ With argument ARG, do this that many times."
 
 ;; Color theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/solarized/" t)
-(if (daemonp)
-    (add-hook 'after-make-frame-functions
-        (lambda (frame)
+(add-hook 'after-make-frame-functions
+          (lambda (frame)
             (with-selected-frame frame
-                (progn 
-                  (load-theme 'solarized-dark t)
-                  (set-linum-format)))))
-    (load-theme 'solarized-dark t))
+              (progn 
+                (set-frame-parameter frame 'background-mode 'dark)
+                (set-terminal-parameter frame 'background-mode 'dark)
+                (enable-theme 'solarized)
+                (set-linum-format)
+              ))))
+(load-theme 'solarized t)
+    
+;; Rainbow Delimiters
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+(require 'rainbow-delimiters)
 
 ;; Flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -136,6 +147,41 @@ With argument ARG, do this that many times."
 
 (global-set-key (kbd "C-n") 'next-error)
 (global-set-key (kbd "C-p") 'previous-error)
+
+;; Helm
+; Mostly taken from https://tuhdo.github.io/helm-intro.html
+(require 'helm)
+(require 'helm-config)
+
+; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
+; Changed to "C-c h". Note: We must set "C-c h" globally, because we
+; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
+(global-unset-key (kbd "C-x c"))
+
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-o") 'helm-semantic-or-imenu)
+
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
+(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+
+(setq
+ helm-split-window-in-side-p       t ; open helm buffer inside current window, not occupy whole other window
+ helm-move-to-line-cycle-in-source t ; move to end or beginning of source when reaching top or bottom of source.
+ helm-ff-search-library-in-sexp    t ; search for library in `require' and `declare-function' sexp.
+ helm-autoresize-mode              t ; resize its buffer automatically to fit with the number of candidates
+ helm-autoresize-min-height       40 ; resize window min 25%
+ helm-autoresize-max-height       40 ; resize window max = min to not resize the helm window
+ helm-M-x-fuzzy-match              t
+ helm-buffers-fuzzy-matching       t
+ helm-recentf-fuzzy-match          t
+ helm-semantic-fuzzy-match         t
+ helm-imenu-fuzzy-match            t
+)
+(helm-mode 1)
 
 ;; Scala
 (add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
@@ -145,18 +191,17 @@ With argument ARG, do this that many times."
       (c-set-offset 'arglist-intro '++))
 (add-hook 'java-mode-hook 'java-arglist-intro)
 
+(add-hook 'java-mode-hook
+          (lambda()
+            (local-unset-key (kbd "C-d"))))
+
 ;; Misc keybindings
 (global-set-key (kbd "C-d") 'kill-whole-line)
 (global-set-key (kbd "M-[ C") 'forward-word)
 (global-set-key (kbd "M-[ D") 'backward-word)
 (global-set-key (kbd "C-l") 'goto-line) ; eclipse muscle memory
-(global-set-key (kbd "C-x C-b") 'electric-buffer-list) ; replace buffer list with better one
-(global-set-key (kbd "C-k") 'recenter) ; rebind from C-l
+;(global-set-key (kbd "C-k") 'recenter) ; rebind from C-l
 (global-unset-key (kbd "C-z")) ; stop the fat-finger C-z suspending
-
-(add-hook 'java-mode-hook
-          (lambda()
-            (local-unset-key (kbd "C-d"))))
 
 ;; Misc settings
 (delete-selection-mode 1)
@@ -168,6 +213,7 @@ With argument ARG, do this that many times."
  x-select-enable-clipboard t
  x-select-enable-primary t
  require-final-newline t
+ vc-follow-symlinks t
 )
 (show-paren-mode 1)
 (global-auto-revert-mode 1)
