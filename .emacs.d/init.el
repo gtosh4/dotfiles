@@ -148,11 +148,11 @@ With argument ARG, do this that many times."
 ;(require 'rainbow-delimiters)
 
 ;; Flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
-(setq flycheck-pylintrc "~/.pylintrc")
-
 (global-set-key (kbd "C-n") 'next-error)
 (global-set-key (kbd "C-p") 'previous-error)
+(add-hook 'python-mode-hook 'flycheck-mode)
+;(add-hook 'prog-mode-hook #'flycheck-mode)
+;(add-hook 'java-mode-hook 'flycheck-mode)
 
 ;; Helm
 ; Mostly taken from https://tuhdo.github.io/helm-intro.html
