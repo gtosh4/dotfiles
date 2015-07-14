@@ -8,7 +8,7 @@
                      scala-mode
                      flycheck
                      helm
-                     rainbow-delimiters
+;                     rainbow-delimiters
 ))
 
 (add-to-list 'package-archives
@@ -126,20 +126,26 @@ With argument ARG, do this that many times."
 
 ;; Color theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/solarized/" t)
-(add-hook 'after-make-frame-functions
-          (lambda (frame)
-            (with-selected-frame frame
-              (progn 
-                (set-frame-parameter frame 'background-mode 'dark)
-                (set-terminal-parameter frame 'background-mode 'dark)
-                (enable-theme 'solarized)
-                (set-linum-format)
-              ))))
-(load-theme 'solarized t)
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                (with-selected-frame frame
+                  (progn 
+                    (set-frame-parameter frame 'background-mode 'dark)
+                    (set-terminal-parameter frame 'background-mode 'dark)
+                    (load-theme 'solarized t)
+                    (set-linum-format)
+                    ))))
+  (progn 
+    (load-theme 'solarized t)
+    (set-linum-format)
+    )
+  )
     
 ;; Rainbow Delimiters
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-(require 'rainbow-delimiters)
+; Solarized uses the same colour for some delimiters as the background colour... :(
+;(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+;(require 'rainbow-delimiters)
 
 ;; Flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -173,8 +179,8 @@ With argument ARG, do this that many times."
  helm-move-to-line-cycle-in-source t ; move to end or beginning of source when reaching top or bottom of source.
  helm-ff-search-library-in-sexp    t ; search for library in `require' and `declare-function' sexp.
  helm-autoresize-mode              t ; resize its buffer automatically to fit with the number of candidates
- helm-autoresize-min-height       40 ; resize window min 25%
- helm-autoresize-max-height       40 ; resize window max = min to not resize the helm window
+ helm-autoresize-min-height       10 ; resize window min 10%
+ helm-autoresize-max-height       10 ; resize window max = min to not resize the helm window
  helm-M-x-fuzzy-match              t
  helm-buffers-fuzzy-matching       t
  helm-recentf-fuzzy-match          t
