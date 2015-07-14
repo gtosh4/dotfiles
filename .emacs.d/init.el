@@ -178,15 +178,26 @@ With argument ARG, do this that many times."
  helm-split-window-in-side-p       t ; open helm buffer inside current window, not occupy whole other window
  helm-move-to-line-cycle-in-source t ; move to end or beginning of source when reaching top or bottom of source.
  helm-ff-search-library-in-sexp    t ; search for library in `require' and `declare-function' sexp.
- helm-autoresize-mode              t ; resize its buffer automatically to fit with the number of candidates
- helm-autoresize-min-height       10 ; resize window min 10%
- helm-autoresize-max-height       10 ; resize window max = min to not resize the helm window
  helm-M-x-fuzzy-match              t
  helm-buffers-fuzzy-matching       t
  helm-recentf-fuzzy-match          t
  helm-semantic-fuzzy-match         t
  helm-imenu-fuzzy-match            t
 )
+
+;;; helm-lean
+; https://www.reddit.com/r/emacs/comments/2z7nbv/lean_helm_window/
+(set-face-attribute 'helm-source-header nil :height 0.1)
+(setq
+ helm-autoresize-max-height 30
+ helm-autoresize-min-height 30
+ helm-display-header-line nil
+)
+(helm-autoresize-mode 1)
+(defvar helm-source-header-default-background (face-attribute 'helm-source-header :background))
+(defvar helm-source-header-default-foreground (face-attribute 'helm-source-header :foreground))
+(defvar helm-source-header-default-box (face-attribute 'helm-source-header :box))
+
 (helm-mode 1)
 
 ;; Scala
