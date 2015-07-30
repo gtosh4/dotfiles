@@ -9,7 +9,7 @@ alias gitprs='git pull --rebase && clear && git status'
 alias gitl='git l'
 alias gitrbi='git rebase -i'
 alias lgits='clear; git status' # Forgot to use ctrl to clear
-alias gitfix='git commit --fixup HEAD; git rebase -i --autosquash'
+alias gitfix='git commit --fixup HEAD; GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash'
 
 # cd
 alias cd='pushd'
