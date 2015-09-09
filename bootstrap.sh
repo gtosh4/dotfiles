@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ 'Darwin' == "$(uname -s)" ]; then
+    alias readlink=greadlink
+    alias ln=gln
+fi
+
 DOTFILES=$(dirname $(readlink -f -n $0))
 
 # Link dot files
@@ -58,4 +63,5 @@ fi
 command="$DOTFILES/bin/update-dotfiles.sh"
 job="0 0 * * * $command > $DOTFILES/autoupdate.log 2>&1"
 # Don't use the shell built-in echo so we get consistent behaviour across envs
-/bin/echo -e "$(crontab -l | fgrep -v update-dotfiles)\n$job" | crontab -
+echo "$(crontab -l | fgrep -v update-dotfiles)
+$job" | crontab -
