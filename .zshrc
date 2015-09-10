@@ -11,6 +11,7 @@ source $ZSH/oh-my-zsh.sh
 [[ -e ~/.aliases ]] && source ~/.aliases
 [[ -e ~/.zshsys ]] && source ~/.zshsys
 [[ -e ~/.zshkeys ]] && source ~/.zshkeys
+
 zstyle ':completion:*' completer _complete _ignored _files
 
 export EDITOR='emacsclient -t -a ""'
