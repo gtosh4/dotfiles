@@ -1,7 +1,3 @@
-[[ -e ~/.aliases ]] && source ~/.aliases
-[[ -e ~/.zshsys ]] && source ~/.zshsys
-[[ -e ~/.zshkeys ]] && source ~/.zshkeys
-
 ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="gg-clean"
@@ -12,6 +8,9 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+[[ -e ~/.aliases ]] && source ~/.aliases
+[[ -e ~/.zshsys ]] && source ~/.zshsys
+[[ -e ~/.zshkeys ]] && source ~/.zshkeys
 zstyle ':completion:*' completer _complete _ignored _files
 
 export EDITOR='emacsclient -t -a ""'
@@ -27,7 +26,11 @@ if [ -e ~/local/py-env/bin/activate ]; then
     source ~/local/py-env/bin/activate
 fi
 
-eval $(dircolors ~/.dircolors-solarized/dircolors.ansi-dark)
+if [[ 'Darwin' = "$(uname -s)" ]]; then
+    eval $(gdircolors ~/.dircolors-solarized/dircolors.ansi-dark)
+else
+    eval $(dircolors ~/.dircolors-solarized/dircolors.ansi-dark)
+fi
 
 function chpwd() {
     emulate -L zsh

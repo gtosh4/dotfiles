@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ 'Darwin' == "$(uname -s)" ]; then
+if [ 'Darwin' = "$(uname -s)" ]; then
     alias readlink=greadlink
     alias ln=gln
 fi

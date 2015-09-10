@@ -1,3 +1,13 @@
+if [[ 'Darwin' = "$(uname -s)" ]]; then
+    alias readlink=greadlink
+    alias ln=gln
+    alias rm='grm --preserve-root'
+    alias ls='gls -FB --color=auto'
+else
+    alias ls='ls -FB --color=auto'
+    alias rm='rm --preserve-root'
+fi
+
 # git
 alias gits='git status'
 alias gitb='git branch -vv'
@@ -20,7 +30,6 @@ alias tmux='tmux -2'
 alias tma='tmux attach'
 
 ## ls
-alias ls='ls -FB --color=auto' # --group-directories-first'
 alias l='ls -ht'
 alias la='ls -A'
 
@@ -41,4 +50,3 @@ alias ff='find . -type f -name'
 
 ## other
 alias grep='grep --color=auto'
-alias rm='rm --preserve-root'
