@@ -1,3 +1,5 @@
+#!/bin/sh
+
 if [[ 'Darwin' = "$(uname -s)" ]]; then
     alias readlink=greadlink
     alias ln=gln
@@ -20,6 +22,7 @@ alias gitl='git l'
 alias gitrbi='git rebase -i'
 alias lgits='clear; git status' # Forgot to use ctrl to clear
 alias gitfix='git commit --fixup HEAD; GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash'
+alias gitsubupdate='git submodule update --init --recursive'
 
 # cd
 alias cd='pushd'
