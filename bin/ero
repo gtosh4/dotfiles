@@ -1,0 +1,3 @@
+#! /usr/bin/env sh
+
+emacsclient -t --eval "(progn (find-file \"$1\") (read-only-mode t))"
