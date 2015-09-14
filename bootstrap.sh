@@ -17,7 +17,8 @@ ln -s -t ~ \
     $DOTFILES/.aliases \
     $DOTFILES/.tmux.conf \
     $DOTFILES/.pylintrc \
-    $DOTFILES/.gitconfig
+    $DOTFILES/.gitconfig \
+    $DOTFILES/.gitignore_global
 
 # Link all scripts to bin
 [ ! -d ~/bin ] && mkdir ~/bin
