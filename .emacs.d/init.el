@@ -9,6 +9,8 @@
                      flycheck
                      helm
 ;                     rainbow-delimiters
+                     go-mode
+                     go-autocomplete
 ))
 
 (add-to-list 'package-archives

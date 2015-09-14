@@ -33,8 +33,8 @@ alias tmux='tmux -2'
 alias tma='tmux attach'
 
 ## ls
-alias l='ls -ht'
-alias la='ls -A'
+alias l='ls -1X'
+alias la='ls -AX'
 
 ## Command line head / tail shortcuts
 alias -g H='| head'

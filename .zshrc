@@ -35,7 +35,7 @@ fi
 
 function chpwd() {
     emulate -L zsh
-    ls
+    ls -X
 }
 
 type finalize_auto_reload >/dev/null && finalize_auto_reload
