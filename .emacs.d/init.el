@@ -11,6 +11,7 @@
 ;                     rainbow-delimiters
                      go-mode
                      go-autocomplete
+                     markdown-mode
 ))
 
 (add-to-list 'package-archives
