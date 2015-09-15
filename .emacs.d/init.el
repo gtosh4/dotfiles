@@ -12,6 +12,7 @@
                      go-mode
                      go-autocomplete
                      markdown-mode
+                     yaml-mode
 ))
 
 (add-to-list 'package-archives

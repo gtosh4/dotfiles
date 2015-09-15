@@ -30,7 +30,7 @@ alias cd-='popd'
 
 # tmux
 alias tmux='tmux -2'
-alias tma='tmux attach'
+alias tma='tmux -S ~/.tmux-socket attach'
 
 ## ls
 alias l='ls -1X'
