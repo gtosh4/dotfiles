@@ -81,7 +81,7 @@ URxvt*allow_bold:       true
 URxvt.modifier:        alt
 URxvt.iso14755_52:     false
 URxvt.perl-ext-common: default,matcher
-URxvt.url-launcher:    /usr/bin/firefox
+URxvt.url-launcher:    /usr/bin/google-chrome
 URxvt.matcher.button:  1
 ! S_blue
 URxvt.colorUL:         #268bd2
@@ -90,7 +90,7 @@ URxvt.termName:        rxvt-16color
 ! Don't send c-h for c-backspace
 URxvt.keysym.C-BackSpace: \033[33~
 URxvt.font:            xft:Inconsolata\\-dz:size=8
-URxvt.cutchars: "()*,<>[]{}|'│:
+*.cutchars: "()*,<>[]{}|'│:
 
 ! xterm Settings
 ! Use 16-color version since we are configuring correct solarized colors

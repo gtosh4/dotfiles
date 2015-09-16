@@ -221,7 +221,7 @@ With argument ARG, do this that many times."
 (global-set-key (kbd "M-[ C") 'forward-word)
 (global-set-key (kbd "M-[ D") 'backward-word)
 (global-set-key (kbd "C-l") 'goto-line) ; eclipse muscle memory
-;(global-set-key (kbd "C-k") 'recenter) ; rebind from C-l
+(global-set-key (kbd "C-L") 'recenter) ; rebind from C-l
 (global-unset-key (kbd "C-z")) ; stop the fat-finger C-z suspending
 
 ;; Misc settings
