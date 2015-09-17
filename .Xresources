@@ -89,7 +89,7 @@ URxvt.colorUL:         #268bd2
 URxvt.termName:        rxvt-16color
 ! Don't send c-h for c-backspace
 URxvt.keysym.C-BackSpace: \033[33~
-URxvt.font:            xft:Inconsolata\\-dz:size=8
+URxvt.font:            xft:Inconsolata\\-dz:size=7
 *.cutchars: "()*,<>[]{}|'│:
 
 ! xterm Settings

@@ -2,17 +2,18 @@
 (require 'package)
 
 (defvar user-package-list '(
-                     auto-complete
-;                     ac-etags
-                     clojure-mode
-                     scala-mode
                      flycheck
                      helm
-;                     rainbow-delimiters
+                     column-marker
+                     
+                     clojure-mode
+                     scala-mode
                      go-mode
-                     go-autocomplete
                      markdown-mode
                      yaml-mode
+                     
+                     auto-complete
+                     go-autocomplete
 ))
 
 (add-to-list 'package-archives
@@ -97,6 +98,7 @@ With argument ARG, do this that many times."
 
 (global-linum-mode 1)
 (global-visual-line-mode 1) ; wrap long lines
+(add-hook 'prog-mode-hook (lambda () (interactive) (column-marker-1 100)))
 
 ;; line highlighting
 (global-hl-line-mode 1)
@@ -125,8 +127,12 @@ With argument ARG, do this that many times."
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 
-(setq-default indent-tabs-mode nil)
-(setq tab-width 4)
+(setq-default
+  indent-tabs-mode nil
+  tab-width 4
+)
+(defvaralias 'c-basic-offset 'tab-width)
+(add-hook 'go-mode-hook '(lambda () (tab-width 2)))
 
 ;; Color theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/solarized/" t)
@@ -246,7 +252,8 @@ With argument ARG, do this that many times."
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default))))
+    ("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
+)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
