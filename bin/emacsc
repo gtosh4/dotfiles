@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if [ $# -eq 1 ]; then
+    file=$(echo $1 | cut -d':' -f1)
+    line=$(echo $1 | cut -s -d':' -f2 | grep -Eo '[0-9]+')
+
+    echo $file
+    echo $line
+    if [ -z "$line" ]; then
+        exec emacsclient -t -a "" $@
+    else
+        exec emacsclient -t -a "" -e "(progn (find-file \"$file\") (goto-line $line))"
+    fi
+else
+    exec emacsclient -t -a "" $@
+fi

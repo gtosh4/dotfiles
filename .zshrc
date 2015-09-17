@@ -15,7 +15,7 @@ source $ZSH/oh-my-zsh.sh
 
 zstyle ':completion:*' completer _complete _ignored _files
 
-export EDITOR='emacsclient -t -a ""'
+export EDITOR='emacsc'
 alias e="$EDITOR"
 alias enw='emacs -nw'
 export SUDO_EDITOR="$EDITOR"
