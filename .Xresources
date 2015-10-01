@@ -79,6 +79,7 @@ URxvt.transparent:      false
 URxvt*allow_bold:       true
 
 URxvt.modifier:        alt
+URxvt.iso14755:        false
 URxvt.iso14755_52:     false
 URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher:    /usr/bin/google-chrome
