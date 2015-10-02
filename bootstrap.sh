@@ -37,9 +37,12 @@ ln -s -t ~/.fonts $DOTFILES/.fonts/*
 
 # terminfo
 [ ! -d ~/.terminfo ] && mkdir ~/.terminfo
-for dir in $(ls $DOTFILES/.terminfo); do
-    [ ! -d ~/.terminfo/$dir ] && mkdir ~/.terminfo/$dir
-    ln -s -t ~/.terminfo/$dir $DOTFILES/.terminfo/$dir/*
+for t in rxvt screen xterm; do
+    infocmp $t |
+        sed -e 's/colors#8/colors#16/' \
+            -e 's/pairs#64/pairs#256/' \
+            -e "s/^$t|/$t-16color|/" |
+        tic -o ~/.terminfo -
 done
 
 # Solarized
