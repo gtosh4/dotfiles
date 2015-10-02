@@ -53,3 +53,4 @@ alias ff='find . -type f -name'
 
 ## other
 alias grep='grep --color=auto'
+alias emacskill='emacsclient -e "(kill-emacs)"'

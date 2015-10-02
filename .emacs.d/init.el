@@ -132,7 +132,7 @@ With argument ARG, do this that many times."
   tab-width 4
 )
 (defvaralias 'c-basic-offset 'tab-width)
-(add-hook 'go-mode-hook '(lambda () (tab-width 2)))
+(add-hook 'go-mode-hook '(lambda () (setq tab-width 2)))
 
 ;; Color theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/solarized/" t)
