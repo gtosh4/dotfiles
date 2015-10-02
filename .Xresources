@@ -105,7 +105,7 @@ XTerm*borderWidth: 0
 XTerm*renderFont: true
 XTerm*faceName: xft:Inconsolata\\-dz:size=7
 XTerm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
-XTerm*eightBitInput: true
+XTerm*eightBitInput: false
 
 ! XFT Settings
 Xft.autohint: 0
