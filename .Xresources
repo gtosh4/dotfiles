@@ -103,8 +103,7 @@ XTerm*scrollTtyOutput: false
 XTerm*scrollBar: false
 XTerm*borderWidth: 0
 XTerm*renderFont: true
-XTerm*faceName: Inconsolata\\-dz
-XTerm*faceSize: 8
+XTerm*faceName: xft:Inconsolata\\-dz:size=7
 XTerm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
 XTerm*eightBitInput: true
 
@@ -112,7 +111,7 @@ XTerm*eightBitInput: true
 Xft.autohint: 0
 Xft.antialias: 1
 Xft.hinting: true
-Xft.hintstyle: hintslight
+Xft.hintstyle: hintfull
 Xft.dpi: 96
-Xft.rgba: rgb
+Xft.rgba: none
 Xft.lcdfilter: lcddefault
