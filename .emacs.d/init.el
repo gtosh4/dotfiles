@@ -98,7 +98,6 @@ With argument ARG, do this that many times."
 
 (global-linum-mode 1)
 (global-visual-line-mode 1) ; wrap long lines
-(add-hook 'prog-mode-hook (lambda () (interactive) (column-marker-1 100)))
 
 ;; line highlighting
 (global-hl-line-mode 1)
