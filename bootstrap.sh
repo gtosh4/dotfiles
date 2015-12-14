@@ -63,8 +63,9 @@ if [ ! -d ~/local/py-env ] && (type virtualenv >/dev/null 2>&1); then
 fi
 
 # Add update to crontab
-command="$DOTFILES/bin/update-dotfiles.sh"
-job="0 0 * * * $command > $DOTFILES/autoupdate.log 2>&1"
-# Don't use the shell built-in echo so we get consistent behaviour across envs
-echo "$(crontab -l | fgrep -v update-dotfiles)
+if [ $(crontab -l | grep -c "update-dotfiles.sh") -eq 0 ]; then
+    command="$DOTFILES/bin/update-dotfiles.sh"
+    job="0 0 * * * $command > $DOTFILES/autoupdate.log 2>&1"
+    echo "$(crontab -l | fgrep -v update-dotfiles)
 $job" | crontab -
+fi
