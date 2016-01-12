@@ -10,6 +10,9 @@ plugins+=(git python)
 
 source $ZSH/oh-my-zsh.sh
 
+# Reload aliases in case OMZ overwrote some
+[[ -e ~/.aliases ]] && source ~/.aliases
+
 # Customize to your needs...
 [[ -e ~/.zshkeys ]] && source ~/.zshkeys
 
