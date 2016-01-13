@@ -1,17 +1,26 @@
-[[ -e ~/.aliases ]] && source ~/.aliases
-[[ -e ~/.zshsys ]] && source ~/.zshsys
+# Do this before OMZ (instead of in .aliases) because the mac versions of these
+# don't act the same as the coreutils ones which will break in OMZ loading.
+if [[ 'Darwin' = "$(uname -s)" ]]; then
+    alias readlink=greadlink
+    alias ln=gln
+    alias ls='gls -FB --color=auto'
+    alias rm='grm --preserve-root'
+else
+    alias ls='ls -FB --color=auto'
+    alias rm='rm --preserve-root'
+fi
 
 ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="gg-clean"
 CASE_SENSITIVE="true"
 DISABLE_CORRECTION="true"
-plugins+=(git python)
+plugins+=(git python golang docker docker-compose systemd)
 
 source $ZSH/oh-my-zsh.sh
 
-# Reload aliases in case OMZ overwrote some
 [[ -e ~/.aliases ]] && source ~/.aliases
+[[ -e ~/.zshsys ]] && source ~/.zshsys
 
 # Customize to your needs...
 [[ -e ~/.zshkeys ]] && source ~/.zshkeys
