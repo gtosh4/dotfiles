@@ -23,7 +23,7 @@ alias tmux='tmux -2'
 alias tma='tmux -S ~/.tmux-socket attach'
 
 ## ls
-alias l='ls -1X'
+alias l='tree -aFL 1 -I ".git" --dirsfirst'
 alias la='ls -AX'
 
 ## Command line head / tail shortcuts
