@@ -15,6 +15,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="gg-clean"
 CASE_SENSITIVE="true"
 DISABLE_CORRECTION="true"
+DISABLE_LS_COLORS="true" # Don't alias ls (we do above)
 plugins+=(git python golang docker docker-compose systemd)
 
 source $ZSH/oh-my-zsh.sh
