@@ -221,6 +221,9 @@ With argument ARG, do this that many times."
           (lambda()
             (local-unset-key (kbd "C-d"))))
 
+;; Golang
+(add-hook 'before-save-hook #'gofmt-before-save)
+
 ;; Misc keybindings
 (global-set-key (kbd "C-d") 'kill-whole-line)
 (global-set-key (kbd "M-[ C") 'forward-word)
