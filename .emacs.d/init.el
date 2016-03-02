@@ -30,6 +30,22 @@
 
 (add-to-list 'load-path "~/.emacs.d/custom/")
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
+ '(frame-background-mode (quote dark)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
 ;; Uniquify
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
@@ -135,21 +151,8 @@ With argument ARG, do this that many times."
 
 ;; Color theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/solarized/" t)
-(if (daemonp)
-    (add-hook 'after-make-frame-functions
-              (lambda (frame)
-                (with-selected-frame frame
-                  (progn 
-                    (set-frame-parameter frame 'background-mode 'dark)
-                    (set-terminal-parameter frame 'background-mode 'dark)
-                    (load-theme 'solarized t)
-                    (set-linum-format)
-                    ))))
-  (progn 
-    (load-theme 'solarized t)
-    (set-linum-format)
-    )
-  )
+(load-theme 'solarized t)
+(set-linum-format)
     
 ;; Rainbow Delimiters
 ; Solarized uses the same colour for some delimiters as the background colour... :(
@@ -229,7 +232,7 @@ With argument ARG, do this that many times."
 (global-set-key (kbd "M-[ C") 'forward-word)
 (global-set-key (kbd "M-[ D") 'backward-word)
 (global-set-key (kbd "C-l") 'goto-line) ; eclipse muscle memory
-(global-set-key (kbd "C-S-l") 'recenter) ; rebind from C-l
+(global-set-key (kbd "C-c C-c") 'recenter) ; rebind from C-l
 (global-unset-key (kbd "C-z")) ; stop the fat-finger C-z suspending
 
 ;; Misc settings
@@ -246,22 +249,6 @@ With argument ARG, do this that many times."
 )
 (show-paren-mode 1)
 (global-auto-revert-mode 1)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
-)
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
 (provide 'init)
 ;;; init.el ends here

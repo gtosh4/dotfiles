@@ -43,6 +43,10 @@ alias duf='du -sh *'
 alias fd='find . -type d -name'
 alias ff='find . -type f -name'
 
+## Docker
+alias dockps='docker ps --format="{{.Names}}[{{.Ports}}]: {{.Command}} ({{.Status}})"'
+alias dockc='docker-compose'
+
 ## other
 alias grep='grep --color=auto'
 alias emacskill='emacsclient -e "(kill-emacs)"'
