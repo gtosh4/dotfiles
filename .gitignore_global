@@ -38,6 +38,9 @@ tramp
 ### Linux ###
 *~
 
+# kdiff3 backups
+*.orig
+
 # KDE directory preferences
 .directory
 
