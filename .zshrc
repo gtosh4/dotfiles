@@ -32,7 +32,7 @@ export EDITOR='emacsc'
 alias e="$EDITOR"
 alias enw='emacs -nw'
 export SUDO_EDITOR="$EDITOR"
-alias E='sudo -e'
+alias E='sudoedit'
 export PAGER='less -R'
 
 if [ -e ~/local/py-env/bin/activate ]; then
