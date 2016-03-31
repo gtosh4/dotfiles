@@ -5,6 +5,7 @@
                      flycheck
                      helm
                      column-marker
+                     neotree
                      
                      clojure-mode
                      scala-mode
@@ -93,6 +94,11 @@ With argument ARG, do this that many times."
 (add-to-list 'semantic-default-submodes 'global-semantic-idle-scheduler-mode)
 (add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode)
 
+;; Neo Tree
+(require 'neotree)
+(setq neo-window-width 30)
+(global-set-key (kbd "C-q") 'neotree-toggle)
+
 ;; Misc line settings
 (defun set-linum-format ()
   (progn
@@ -179,6 +185,7 @@ With argument ARG, do this that many times."
 
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-x C-b") 'helm-mini)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-o") 'helm-semantic-or-imenu)
 
@@ -234,6 +241,7 @@ With argument ARG, do this that many times."
 (global-set-key (kbd "C-l") 'goto-line) ; eclipse muscle memory
 (global-set-key (kbd "C-c C-c") 'recenter) ; rebind from C-l
 (global-unset-key (kbd "C-z")) ; stop the fat-finger C-z suspending
+(global-unset-key (kbd "C-v")) ; lame scrolling
 
 ;; Misc settings
 (delete-selection-mode 1)
