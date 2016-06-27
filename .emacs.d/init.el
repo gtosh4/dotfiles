@@ -12,6 +12,8 @@
                      go-mode
                      markdown-mode
                      yaml-mode
+                     lua-mode
+                     dockerfile-mode
                      
                      auto-complete
                      go-autocomplete
