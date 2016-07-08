@@ -6,6 +6,7 @@
                      helm
                      column-marker
                      neotree
+                     xclip
                      
                      clojure-mode
                      scala-mode
@@ -128,6 +129,9 @@ With argument ARG, do this that many times."
 
 ;; Turn Menu Bar off
 (menu-bar-mode -1)
+
+;; Use xclip
+(xclip-mode 1)
 
 ;; Autosave settings
 (setq backup-directory-alist `((".*" . "~/.autosave")))
