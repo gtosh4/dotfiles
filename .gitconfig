@@ -29,4 +29,4 @@
 [format]
     pretty=simple
 [merge]
-    tool=kdiff3
+	tool = meld
