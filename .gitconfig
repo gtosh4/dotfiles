@@ -24,9 +24,12 @@
     simple=%C(auto)%h%d [%ci] %s - %cn
 [diff]
     algorithm = patience
-[include]
-    path=.gitconfig_sys
 [format]
     pretty=simple
 [merge]
 	tool = meld
+[user]
+	email = gtosh4@gmail.com
+	name = gtosh4
+[include]
+    path=.gitconfig_sys
