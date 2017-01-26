@@ -33,3 +33,5 @@
 	name = gtosh4
 [include]
     path=.gitconfig_sys
+[init]
+	templatedir = ~/.git-templates

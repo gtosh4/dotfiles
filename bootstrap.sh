@@ -18,6 +18,7 @@ ln -s -t ~ \
     $DOTFILES/.tmux.conf \
     $DOTFILES/.pylintrc \
     $DOTFILES/.gitconfig \
+    $DOTFILES/.git-templates \
     $DOTFILES/.gitignore_global
 
 # Link all scripts to bin
