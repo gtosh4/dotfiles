@@ -7,6 +7,7 @@
                      column-marker
                      neotree
                      xclip
+;                     drag-stuff
                      
                      clojure-mode
                      scala-mode
@@ -15,6 +16,7 @@
                      yaml-mode
                      lua-mode
                      dockerfile-mode
+                     powershell
                      
                      auto-complete
                      go-autocomplete
@@ -132,6 +134,9 @@ With argument ARG, do this that many times."
 
 ;; Use xclip
 (xclip-mode 1)
+
+;; drag-stuff
+;(drag-stuff-global-mode 1)
 
 ;; Autosave settings
 (setq backup-directory-alist `((".*" . "~/.autosave")))

@@ -17,6 +17,7 @@ ln -s -t ~ \
     $DOTFILES/.aliases \
     $DOTFILES/.tmux.conf \
     $DOTFILES/.pylintrc \
+    $DOTFILES/.ackrc \
     $DOTFILES/.gitconfig \
     $DOTFILES/.git-templates \
     $DOTFILES/.gitignore_global
