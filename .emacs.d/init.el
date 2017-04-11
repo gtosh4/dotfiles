@@ -17,6 +17,7 @@
                      lua-mode
                      dockerfile-mode
                      powershell
+                     nginx-mode
                      
                      auto-complete
                      go-autocomplete
