@@ -2,13 +2,11 @@
 
 DOTFILES_BIN=$(dirname $(readlink -e $0))
 DOTFILES=$(dirname $DOTFILES_BIN)
-EMACS_SOLARIZED="$HOME/.emacs.d/solarized"
-DIRCOL_SOLARIZED="$HOME/.dircolors-solarized"
-MINTTY_SOLARIZED="$HOME/.mintty-solarized"
+GIT_DIRS=''
 
 echo "Updating dotfiles (date: $(date))"
 
-for git in $DOTFILES $EMACS_SOLARIZED $DIRCOL_SOLARIZED $MINTTY_SOLARIZED
+for git in $GIT_DIRS
 do
     echo "Moving to $git"
     cd $git

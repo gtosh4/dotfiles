@@ -44,9 +44,9 @@ fi
 # Force xterm-16color because we want the colors to be applied regardless of TERM set.
 # Also because it's missing the rxvt-16color TERM that we made up.
 if [[ 'Darwin' = "$(uname -s)" ]]; then
-    eval $(TERM=xterm-16color gdircolors ~/.dircolors-solarized/dircolors.ansi-dark)
+    eval $(gdircolors)
 else
-    eval $(TERM=xterm-16color dircolors ~/.dircolors-solarized/dircolors.ansi-dark)
+    eval $(dircolors)
 fi
 
 function chpwd() {

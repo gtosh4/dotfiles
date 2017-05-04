@@ -46,12 +46,6 @@ for t in rxvt screen xterm; do
         tic -o ~/.terminfo -
 done
 
-# Solarized
-[ ! -d ~/.emacs.d/solarized ] && git clone --depth 1 git://github.com/sellout/emacs-color-theme-solarized.git ~/.emacs.d/solarized
-[ ! -d ~/.dircolors-solarized ] && git clone --depth 1 git://github.com/seebi/dircolors-solarized.git ~/.dircolors-solarized
-[ ! -d ~/.mintty-solarized ] && git clone --depth 1 git://github.com/mavnn/mintty-colors-solarized.git ~/.mintty-solarized
-ln -s ~/.mintty-solarized/.minttyrc.dark ~/.minttyrc
-
 # Base16
 [ ! -d ~/.base16 ] && mkdir ~/.base16
 [ ! -d ~/.base16/xresources ] && git clone --depth 1 git://github.com/chriskempson/base16-xresources.git ~/.base16/xresources
