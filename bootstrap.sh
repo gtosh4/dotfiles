@@ -13,7 +13,6 @@ ln -s -t ~ \
     $DOTFILES/.zshkeys \
     $DOTFILES/.zprofile \
     $DOTFILES/.gnomerc \
-    $DOTFILES/.Xresources \
     $DOTFILES/.aliases \
     $DOTFILES/.tmux.conf \
     $DOTFILES/.pylintrc \
@@ -53,6 +52,11 @@ done
 [ ! -d ~/.mintty-solarized ] && git clone --depth 1 git://github.com/mavnn/mintty-colors-solarized.git ~/.mintty-solarized
 ln -s ~/.mintty-solarized/.minttyrc.dark ~/.minttyrc
 
+# Base16
+[ ! -d ~/.base16 ] && mkdir ~/.base16
+[ ! -d ~/.base16/xresources ] && git clone --depth 1 git://github.com/chriskempson/base16-xresources.git ~/.base16/xresources
+[ ! -d ~/.base16/tomorrow ] && git clone --depth 1 git://github.com/chriskempson/base16-tomorrow-scheme.git ~/.base16/tomorrow
+
 # Oh My Zsh
 [ ! -d ~/.oh-my-zsh ] && git clone --depth 1 git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 ln -s $DOTFILES/gg-clean.zsh-theme ~/.oh-my-zsh/custom/
@@ -71,3 +75,10 @@ if [ $(crontab -l | grep -c "update-dotfiles.sh") -eq 0 ]; then
     echo "$(crontab -l | fgrep -v update-dotfiles)
 $job" | crontab -
 fi
+
+# Xresources
+# Use cpp ourselves since some desktop managers load the Xresources with the '-nocpp' flag (looking at you lightdm)
+(
+    cat ~/.base16/xresources/xresources/base16-tomorrow-night.Xresources
+    cat ~/dotfiles/utils.Xresources
+) | cpp > ~/.Xresources

@@ -21,6 +21,8 @@
                      
                      auto-complete
                      go-autocomplete
+
+                     base16-theme
 ))
 
 (add-to-list 'package-archives
@@ -195,8 +197,9 @@ Non-interactive arguments are Begin End Regexp"
 (add-hook 'go-mode-hook '(lambda () (setq tab-width 2)))
 
 ;; Color theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/solarized/" t)
-(load-theme 'solarized t)
+;;(add-to-list 'custom-theme-load-path "~/.emacs.d/solarized/" t)
+;;(load-theme 'solarized t)
+(load-theme 'base16-tomorrow-night t)
 (set-linum-format)
     
 ;; Rainbow Delimiters

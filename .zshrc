@@ -41,10 +41,12 @@ if [ -e ~/local/py-env/bin/activate ]; then
     source ~/local/py-env/bin/activate
 fi
 
+# Force xterm-16color because we want the colors to be applied regardless of TERM set.
+# Also because it's missing the rxvt-16color TERM that we made up.
 if [[ 'Darwin' = "$(uname -s)" ]]; then
-    eval $(gdircolors ~/.dircolors-solarized/dircolors.ansi-dark)
+    eval $(TERM=xterm-16color gdircolors ~/.dircolors-solarized/dircolors.ansi-dark)
 else
-    eval $(dircolors ~/.dircolors-solarized/dircolors.ansi-dark)
+    eval $(TERM=xterm-16color dircolors ~/.dircolors-solarized/dircolors.ansi-dark)
 fi
 
 function chpwd() {

@@ -1,0 +1,43 @@
+// use tmux to manage history
+URxvt*saveLine:         0
+URxvt*scrollBar:        false
+URxvt*matcher.button:   1
+URxvt.transparent:      false
+URxvt*allow_bold:       true
+
+URxvt.modifier:        alt
+URxvt.iso14755:        false
+URxvt.iso14755_52:     false
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher:    /usr/bin/google-chrome
+URxvt.matcher.button:  1
+URxvt.colorUL:         base09
+// Use 16-color version since we are configuring correct solarized colors
+URxvt.termName:        rxvt-16color
+// Don't send c-h for c-backspace
+URxvt.keysym.C-BackSpace: \033[33~
+URxvt.font:            xft:Inconsolata\\-dz:size=7
+*.cutchars: "\"()*,<>[]{}|\'│:"
+
+// xterm Settings
+// Use 16-color version since we are configuring correct colors
+XTerm*termName:  xterm-16color
+XTerm*utf8: 2
+XTerm*saveLines: 0
+XTerm*scrollKey: false
+XTerm*scrollTtyOutput: false
+XTerm*scrollBar: false
+XTerm*borderWidth: 0
+XTerm*renderFont: true
+XTerm*faceName: xft:Inconsolata\\-dz:size=7
+XTerm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
+XTerm*eightBitInput: false
+
+// XFT Settings
+Xft.autohint: 0
+Xft.antialias: 1
+Xft.hinting: true
+Xft.hintstyle: hintfull
+Xft.dpi: 96
+Xft.rgba: none
+Xft.lcdfilter: lcddefault
