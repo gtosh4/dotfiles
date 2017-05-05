@@ -13,6 +13,11 @@
 #   of text against a Perl regular expression.  This is only for
 #   the --type-add option.
 
+### Colors
+--color-filename=green
+--color-match=on_yellow bright_green
+--color-lineno=yellow
+
 
 ### Directories to ignore
 
