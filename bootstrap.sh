@@ -51,9 +51,8 @@ done
 [ ! -d ~/.base16/xresources ] && git clone --depth 1 git://github.com/chriskempson/base16-xresources.git ~/.base16/xresources
 [ ! -d ~/.base16/tomorrow ] && git clone --depth 1 git://github.com/chriskempson/base16-tomorrow-scheme.git ~/.base16/tomorrow
 
-# Oh My Zsh
-[ ! -d ~/.oh-my-zsh ] && git clone --depth 1 git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-ln -s $DOTFILES/gg-clean.zsh-theme ~/.oh-my-zsh/custom/
+# zgen
+[ ! -d ~/.zgen ] && git clone --depth 1 git://github.com/tarjoilija/zgen.git ~/.zgen
 
 # Python virtualenv setup
 if [ ! -d ~/local/py-env ] && (type virtualenv >/dev/null 2>&1); then

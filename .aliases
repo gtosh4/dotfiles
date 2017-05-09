@@ -51,3 +51,4 @@ alias dockc='docker-compose'
 ## other
 alias grep='grep --color=auto'
 alias emacskill='emacsclient -e "(kill-emacs)"'
+alias historysummary="history | awk '{a[\$2]++} END{for(i in a){printf \"%5d\t%s\n\",a[i],i}}' | sort -rn | head"

@@ -50,6 +50,8 @@ case $TERM in
 esac
 bindkey -M emacs '^[[33~' backward-kill-word
 
+bindkey '^ ' autosuggest-accept
+
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
 function zle-line-init () {
