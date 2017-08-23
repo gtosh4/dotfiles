@@ -74,4 +74,4 @@ fi
 (
     cat ~/.base16/xresources/xresources/base16-tomorrow-night.Xresources
     cat ~/dotfiles/utils.Xresources
-) | cpp > ~/.Xresources
+) | cpp | sed -r '/^#|!/d' > ~/.Xresources

@@ -3,6 +3,9 @@
 
 (defvar user-package-list '(
                      flycheck
+                     flycheck-elixir
+                     eslint-fix
+                     
                      helm
                      column-marker
                      neotree
@@ -18,6 +21,9 @@
                      dockerfile-mode
                      powershell
                      nginx-mode
+                     elixir-mode
+                     alchemist
+                     js2-mode
                      
                      auto-complete
                      go-autocomplete
@@ -188,7 +194,7 @@ Non-interactive arguments are Begin End Regexp"
 
 (setq-default
   indent-tabs-mode nil
-  tab-width 4
+  tab-width 2
   )
 
 (add-hook 'prog-mode-hook 'infer-indentation-style)
@@ -213,6 +219,13 @@ Non-interactive arguments are Begin End Regexp"
 (add-hook 'python-mode-hook 'flycheck-mode)
 ;(add-hook 'prog-mode-hook #'flycheck-mode)
 ;(add-hook 'java-mode-hook 'flycheck-mode)
+
+;; Javascript
+(rassq-delete-all 'javascript-mode auto-mode-alist)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(eval-after-load 'js-mode
+  '(add-hook 'js-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
+
 
 ;; Helm
 ; Mostly taken from https://tuhdo.github.io/helm-intro.html
