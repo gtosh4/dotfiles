@@ -297,6 +297,7 @@ Non-interactive arguments are Begin End Regexp"
 (global-set-key (kbd "C-c C-c") 'recenter) ; rebind from C-l
 (global-unset-key (kbd "C-z")) ; stop the fat-finger C-z suspending
 (global-unset-key (kbd "C-v")) ; lame scrolling
+(global-set-key (kbd "C-z") 'set-mark-command) ; alternative mark because cmder is lame 
 
 ;; Misc settings
 (delete-selection-mode 1)
@@ -312,6 +313,7 @@ Non-interactive arguments are Begin End Regexp"
 )
 (show-paren-mode 1)
 (global-auto-revert-mode 1)
+(add-to-list 'auto-mode-alist '("/nginx/sites-\\(available\\|enabled\\)/" . nginx-mode))
 
 (provide 'init)
 ;;; init.el ends here

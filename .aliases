@@ -44,9 +44,10 @@ alias duf='du -sh *'
 alias fd='find . -type d -name'
 alias ff='find . -type f -name'
 
-## Docker
+## Docker (and related)
 alias dockps='docker ps --format="{{.Names}}[{{.Ports}}]: {{.Command}} ({{.Status}})"'
 alias dockc='docker-compose'
+alias k=kubectl
 
 ## other
 alias grep='grep --color=auto'
