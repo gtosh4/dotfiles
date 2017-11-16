@@ -223,8 +223,8 @@ Non-interactive arguments are Begin End Regexp"
 ;; Javascript
 (rassq-delete-all 'javascript-mode auto-mode-alist)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(eval-after-load 'js-mode
-  '(add-hook 'js-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
+(add-hook 'js2-mode-hook '(lambda () (add-hook 'after-save-hook 'eslint-fix nil t)))
+(add-hook 'js2-mode-hook '(lambda () (setq tab-width 2)))
 
 
 ;; Helm

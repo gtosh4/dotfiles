@@ -30,3 +30,5 @@
 	tool = meld
 [include]
     path=.gitconfig_sys
+[url "git@github.com:"]
+	insteadOf = https://github.com/
