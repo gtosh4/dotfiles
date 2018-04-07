@@ -19,7 +19,8 @@ ln -s -t ~ \
     $DOTFILES/.ackrc \
     $DOTFILES/.gitconfig \
     $DOTFILES/.git-templates \
-    $DOTFILES/.gitignore_global
+    $DOTFILES/.gitignore_global \
+    $DOTFILES/LS_COLORS
 
 # Link all scripts to bin
 [ ! -d ~/bin ] && mkdir ~/bin
