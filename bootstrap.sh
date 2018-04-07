@@ -56,8 +56,11 @@ done
 [ ! -d ~/.zgen ] && git clone --depth 1 git://github.com/tarjoilija/zgen.git ~/.zgen
 
 # Python virtualenv setup
-if [ ! -d ~/local/py-env ] && (type virtualenv >/dev/null 2>&1); then
-    [ ! -d ~/local ] && mkdir ~/local
+[ ! -d ~/local ] && mkdir ~/local
+if type python3 >/dev/null 2>&1 ; then
+    python3 -m venv ~/local/py-env
+    source ~/local/pyenv/bin/activate
+elif [ ! -d ~/local/py-env ] && (type virtualenv >/dev/null 2>&1); then
     virtualenv ~/local/py-env
     source ~/local/py-env/bin/activate
 fi
