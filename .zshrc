@@ -83,6 +83,7 @@ if [ -e ~/local/py-env/bin/activate ]; then
     export VIRTUAL_ENV_DISABLE_PROMPT='off'
     source ~/local/py-env/bin/activate
 fi
+[[ -e ~/.gvm/scripts/gvm ]] && source ~/.gvm/scripts/gvm
 
 # Force xterm-16color because we want the colors to be applied regardless of TERM set.
 # Also because it's missing the rxvt-16color TERM that we made up.
