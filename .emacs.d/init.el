@@ -7,10 +7,8 @@
                      eslint-fix
                      
                      helm
-                     column-marker
                      neotree
                      xclip
-;                     drag-stuff
                      
                      clojure-mode
                      scala-mode

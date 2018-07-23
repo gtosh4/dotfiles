@@ -36,6 +36,10 @@ ln -s -t ~/.emacs.d $DOTFILES/.emacs.d/*
 # Fonts
 [ ! -d ~/.fonts ] && mkdir ~/.fonts
 ln -s -t ~/.fonts $DOTFILES/.fonts/*
+for type in Bold Light Medium Regular Retina; do
+    wget -O ~/.fonts/FiraCode-${type}.ttf \
+         "https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-${type}.ttf?raw=true";
+done
 
 # terminfo
 [ ! -d ~/.terminfo ] && mkdir ~/.terminfo
@@ -59,7 +63,7 @@ done
 [ ! -d ~/local ] && mkdir ~/local
 if type python3 >/dev/null 2>&1 ; then
     python3 -m venv ~/local/py-env
-    source ~/local/pyenv/bin/activate
+    source ~/local/py-env/bin/activate
 elif [ ! -d ~/local/py-env ] && (type virtualenv >/dev/null 2>&1); then
     virtualenv ~/local/py-env
     source ~/local/py-env/bin/activate
