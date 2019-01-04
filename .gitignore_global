@@ -208,6 +208,7 @@ hs_err_pid*
 
 # Fortran module files
 *.mod
+!go.mod
 
 # Compiled Static libraries
 *.lai
