@@ -16,7 +16,7 @@ URxvt.colorUL:         base09
 URxvt.termName:        rxvt-16color
 // Don't send c-h for c-backspace
 URxvt.keysym.C-BackSpace: \033[33~
-URxvt.font:            xft:Inconsolata\\-dz:size=7
+URxvt.font:            xft:Fira Code Retina:size=9
 *.cutchars: "\"()*,<>[]{}|\'│:"
 
 // xterm Settings
@@ -29,7 +29,7 @@ XTerm*scrollTtyOutput: false
 XTerm*scrollBar: false
 XTerm*borderWidth: 0
 XTerm*renderFont: true
-XTerm*faceName: xft:Inconsolata\\-dz:size=7
+XTerm*faceName: xft:Fira Code Retina:size=9
 XTerm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
 XTerm*eightBitInput: false
 
