@@ -117,3 +117,5 @@ dedupe_path() {
 }
 
 dedupe_path
+
+[[ -s "/home/ggoetz/.gvm/scripts/gvm" ]] && source "/home/ggoetz/.gvm/scripts/gvm"

@@ -3,5 +3,6 @@
 (defun terminal-init-screen ()
     "Terminal initialization function for screen."
     ;; Use the xterm color initialization code.
-    (xterm-register-default-colors)
+    (load "term/xterm")
+    (terminal-init-xterm)
     (tty-set-up-initial-frame-faces))
