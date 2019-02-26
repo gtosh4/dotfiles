@@ -49,6 +49,7 @@ case $TERM in
 	;; 
 esac
 bindkey -M emacs '^[[33~' backward-kill-word
+bindkey -M emacs '^[[18;2~' backward-kill-word
 
 bindkey '^ ' autosuggest-accept
 
