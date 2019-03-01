@@ -38,7 +38,7 @@ ln -s -t ~/.emacs.d $DOTFILES/.emacs.d/*
 [ ! -d ~/.fonts ] && mkdir ~/.fonts
 ln -s -t ~/.fonts $DOTFILES/.fonts/*
 for type in Bold Light Medium Regular Retina; do
-    wget -O ~/.fonts/FiraCode-${type}.ttf \
+    [ ! -e !/.fonts/FiraCode-${type}.ttf ] && wget -O ~/.fonts/FiraCode-${type}.ttf \
          "https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-${type}.ttf?raw=true";
 done
 
