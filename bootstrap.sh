@@ -62,7 +62,7 @@ done
 
 # Python virtualenv setup
 [ ! -d ~/local ] && mkdir ~/local
-if type python3 >/dev/null 2>&1 ; then
+if type python3 >/dev/null 2>&1 && [ ! -d ~/local/py-env ] ; then
     python3 -m venv ~/local/py-env
     source ~/local/py-env/bin/activate
 elif [ ! -d ~/local/py-env ] && (type virtualenv >/dev/null 2>&1); then

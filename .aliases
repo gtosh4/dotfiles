@@ -25,8 +25,8 @@ alias tmcp='tmux show-buffer | xclip -i -selection clipboard'
 
 ## ls
 alias l='tree -aCFlL 1 -I ".git" --dirsfirst'
-alias ll='tree -aCFlL 2 -I ".git" --dirsfirst'
-alias lll='tree -aCFlL 3 -I ".git" --dirsfirst'
+alias ll='tree -aCFlL 2 -I ".git|node_modules|vendor" --dirsfirst'
+alias lll='tree -aCFlL 3 -I ".git|node_modules|vendor" --dirsfirst'
 alias la='ls -AX'
 
 ## Command line head / tail shortcuts
