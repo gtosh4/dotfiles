@@ -20,6 +20,7 @@
     autosetuprebase = always
 [push]
     default = upstream
+    followTags = true
 [pretty]
     simple=%C(auto)%h%d [%ci] %s - %cn
 [diff]
