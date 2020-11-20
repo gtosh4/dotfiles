@@ -121,5 +121,8 @@ dedupe_path
 
 [[ -s "/home/ggoetz/.gvm/scripts/gvm" ]] && source "/home/ggoetz/.gvm/scripts/gvm"
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
 # https://github.com/Microsoft/vscode/issues/13189#issuecomment-370427397
 export ELECTRON_TRASH=gio
