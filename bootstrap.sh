@@ -15,12 +15,13 @@ ln -s -t ~ \
     $DOTFILES/.gnomerc \
     $DOTFILES/.aliases \
     $DOTFILES/.tmux.conf \
+    $DOTFILES/.tomorrow-night.tmux \
     $DOTFILES/.pylintrc \
     $DOTFILES/.ackrc \
     $DOTFILES/.gitconfig \
     $DOTFILES/.git-templates \
     $DOTFILES/.gitignore_global \
-    $DOTFILES/LS_COLORS
+    $DOTFILES/LS_COLORS \
     $DOTFILES/.gitignore_global
 
 # Link all scripts to bin
@@ -54,7 +55,7 @@ done
 
 # Base16
 [ ! -d ~/.base16 ] && mkdir ~/.base16
-[ ! -d ~/.base16/xresources ] && git clone --depth 1 git://github.com/chriskempson/base16-xresources.git ~/.base16/xresources
+[ ! -d ~/.base16/xresources ] && git clone --depth 1 git://github.com/base16-templates/base16-xresources.git ~/.base16/xresources
 [ ! -d ~/.base16/tomorrow ] && git clone --depth 1 git://github.com/chriskempson/base16-tomorrow-scheme.git ~/.base16/tomorrow
 
 # zgen
@@ -79,8 +80,7 @@ $job" | crontab -
 fi
 
 # Xresources
-# Use cpp ourselves since some desktop managers load the Xresources with the '-nocpp' flag (looking at you lightdm)
 (
-    cat ~/.base16/xresources/xresources/base16-tomorrow-night.Xresources
+    cat ~/.base16/xresources/xresources/base16-tomorrow-night-256.Xresources
     cat ~/dotfiles/utils.Xresources
-) | cpp | sed -r '/^#|!/d' > ~/.Xresources
+) > ~/.Xresources
