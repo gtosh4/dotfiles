@@ -77,7 +77,6 @@ alias enw='emacs -nw'
 export SUDO_EDITOR="$EDITOR"
 alias E='sudoedit'
 export PAGER='less -R'
-alias c="code ."
 
 if [ -e ~/local/py-env/bin/activate ]; then
     # Doesn't matter what this is set to as long as it's not empty
