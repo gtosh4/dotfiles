@@ -1,117 +1,96 @@
-;; Packages
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-language-environment 'utf-8)
+(set-selection-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+
 (require 'package)
 
-(defvar user-package-list '(
-                     flycheck
-                     flycheck-elixir
-                     eslint-fix
-                     
-                     helm
-                     neotree
-                     xclip
-                     
-                     clojure-mode
-                     scala-mode
-                     go-mode
-                     markdown-mode
-                     yaml-mode
-                     lua-mode
-                     dockerfile-mode
-                     powershell
-                     nginx-mode
-                     elixir-mode
-                     alchemist
-                     js2-mode
-                     
-                     auto-complete
-                     go-autocomplete
+(setq package-archives
+      '(("melpa" . "http://melpa.org/packages/")
+        ("org" . "https://orgmode.org/elpa/")
+        ("gnu" . "https://elpa.gnu.org/packages/")))
 
-                     base16-theme
-))
+(setq package-archive-priorities
+      '(("melpa" .  3)
+        ("org" . 2)
+        ("gnu" . 1)))
 
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(setq package-enable-at-startup nil)
-(package-initialize)
+(require 'tls)
 
-(unless package-archive-contents
-  (package-refresh-contents))
+;; From https://github.com/hlissner/doom-emacs/blob/5dacbb7cb1c6ac246a9ccd15e6c4290def67757c/core/core-packages.el#L102
+(setq gnutls-verify-error (not (getenv "INSECURE")) ; you shouldn't use this
+      tls-checktrust gnutls-verify-error
+      tls-program (list "gnutls-cli --x509cafile %t -p %p %h"
+                        ;; compatibility fallbacks
+                        "gnutls-cli -p %p %h"
+                        "openssl s_client -connect %h:%p -no_ssl2 -no_ssl3 -ign_eof"))
 
-(dolist (package user-package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
+;; Initialise the packages, avoiding a re-initialisation.
+(unless (bound-and-true-p package--initialized)
+  (setq package-enable-at-startup nil)
+  (package-initialize))
 
-(add-to-list 'load-path "~/.emacs.d/custom/")
+(setq load-prefer-newer t)              ; Always load newer compiled files
+(setq ad-redefinition-action 'accept)   ; Silence advice redefinition warnings
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
- '(frame-background-mode (quote dark)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+;; Init `delight'
+(unless (package-installed-p 'delight)
+  (package-refresh-contents)
+  (package-install 'delight))
 
-;; Uniquify
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'forward)
+;; Configure `use-package' prior to loading it.
+(eval-and-compile
+  (setq use-package-always-ensure nil)
+  (setq use-package-always-defer nil)
+  (setq use-package-always-demand nil)
+  (setq use-package-expand-minimally nil)
+  (setq use-package-enable-imenu-support t))
 
-;; Smart-home
-(defun smart-beginning-of-line ()
-  "Move point to first non-whitespace character or beginning-of-line."
-  (interactive) ; Use (interactive "^") in Emacs 23 to make shift-select work
-  (let ((oldpos (point)))
-    (back-to-indentation)
-    (and (= oldpos (point))
-         (beginning-of-line))))
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
-(global-set-key [home] 'smart-beginning-of-line)
+(eval-when-compile
+  (require 'use-package))
 
-;; Backward delete word
-(defun backward-delete-word (arg)
-  "Delete characters backward until encountering the beginning of a word.
-With argument ARG, do this that many times."
-  (interactive "p")
-  (delete-region (point) (progn (backward-word arg) (point))))
+(use-package auto-package-update
+   :ensure t
+   :config
+   (setq auto-package-update-delete-old-versions t
+         auto-package-update-interval 4)
+   (auto-package-update-maybe))
 
-; See .Xresources: URxvt.keysym.C-BackSpace: \033[33~
-(global-set-key (kbd "S-<f9>") 'backward-delete-word)
+;; Theme
+(use-package base16-theme
+ 	     :ensure t
+ 	     :init
+	     (setq base16-theme-256-color-source 'colors)
+ 	     :config
+ 	     (load-theme 'base16-tomorrow-night t))
 
-;; auto-complete
-(require 'auto-complete)
-(require 'auto-complete-config)
-(global-auto-complete-mode t)
+;; Custom file
+(defconst vde/custom-file (locate-user-emacs-file "custom.el")
+  "File used to store settings from Customization UI.")
 
-;; Tags
-;(custom-set-variables
-;  '(ac-etags-requires 2))
-;(eval-after-load "etags"
-;  '(progn (ac-etags-setup)))
-;'(add-hook 'c-mode-common-hook 'ac-etags-ac-setup)
-;(add-hook 'python-mode-hook 'ac-etags-ac-setup)
+(use-package cus-edit
+  :config
+  (setq
+   custom-file vde/custom-file
+   custom-buffer-done-kill nil          ; Kill when existing
+   custom-buffer-verbose-help nil       ; Remove redundant help text
+   custom-unlispify-tag-names nil       ; Show me the real variable name
+   custom-unlispify-menu-entries nil)
+  (unless (file-exists-p custom-file)
+    (write-region "" nil custom-file))
 
-;; Semantic Mode
-(require 'semantic/ia)
-(semantic-mode 1)
-(global-semantic-show-unmatched-syntax-mode 1)
-(add-to-list 'semantic-default-submodes 'global-semantic-decoration-mode)
-(add-to-list 'semantic-default-submodes 'global-semantic-idle-local-symbol-highlight-mode)
-(add-to-list 'semantic-default-submodes 'global-semantic-idle-scheduler-mode)
-(add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode)
+(load vde/custom-file 'no-error 'no-message))
 
-;; Neo Tree
-(require 'neotree)
-(setq neo-window-width 30)
-(global-set-key (kbd "C-q") 'neotree-toggle)
+;; Misc Settings
+(xclip-mode 1)
+(global-hl-line-mode 1)
 
-;; Misc line settings
+;; Line settings
 (defun set-linum-format ()
   (progn
      (defface linum-leading-zero
@@ -132,20 +111,16 @@ With argument ARG, do this that many times."
 
 (global-linum-mode 1)
 (global-visual-line-mode 1) ; wrap long lines
+(set-linum-format)
 
-;; line highlighting
-(global-hl-line-mode 1)
 
-;; Turn Menu Bar off
-(menu-bar-mode -1)
+;; Uniquify
+(use-package uniquify
+	     :ensure nil
+	     :init
+	     (setq uniquify-buffer-name-style 'forward))
 
-;; Use xclip
-(xclip-mode 1)
-
-;; drag-stuff
-;(drag-stuff-global-mode 1)
-
-;; Autosave settings
+;; Autosave
 (setq backup-directory-alist `((".*" . "~/.autosave")))
 (setq make-backup-files t               ; backup of a file the first time it is saved.
       backup-by-copying t               ; don't clobber symlinks
@@ -158,134 +133,17 @@ With argument ARG, do this that many times."
       auto-save-interval 200            ; number of keystrokes between auto-saves (default: 300)
       )
 
-;; Indentation
-(defun iwb ()
-  "indent whole buffer"
-  (interactive)
-  (delete-trailing-whitespace)
-  (indent-region (point-min) (point-max) nil)
-  (untabify (point-min) (point-max)))
-
-(defun how-many-region (begin end regexp &optional interactive)
-    "Print number of non-trivial matches for REGEXP in region.                    
-Non-interactive arguments are Begin End Regexp"
-    (interactive "r\nsHow many matches for (regexp): \np")
-    (let ((count 0) opoint)
-      (save-excursion
-        (setq end (or end (point-max)))
-        (goto-char (or begin (point)))
-        (while (and (< (setq opoint (point)) end)
-                    (re-search-forward regexp end t))
-          (if (= opoint (point))
-              (forward-char 1)
-            (setq count (1+ count))))
-        (if interactive (message "%d occurrences" count))
-        count)))
-
-(defun infer-indentation-style ()
-  ;; if our source file uses tabs, we use tabs, if spaces spaces, and if
-  ;; neither, we use the current indent-tabs-mode
-  (let ((space-count (how-many-region (point-min) (point-max) "^  "))
-        (tab-count (how-many-region (point-min) (point-max) "^\t")))
-    (if (> space-count tab-count) (setq indent-tabs-mode nil))
-    (if (> tab-count space-count) (setq indent-tabs-mode t))))
-
-(setq-default
-  indent-tabs-mode nil
-  tab-width 2
-  )
-
-(add-hook 'prog-mode-hook 'infer-indentation-style)
-
-(defvaralias 'c-basic-offset 'tab-width)
-(add-hook 'go-mode-hook '(lambda () (setq tab-width 2)))
-
-;; Color theme
-(load-theme 'base16-tomorrow-night t)
-(set-linum-format)
-    
-;; Rainbow Delimiters
-; Solarized uses the same colour for some delimiters as the background colour... :(
-;(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-;(require 'rainbow-delimiters)
-
-;; Flycheck
-(global-set-key (kbd "C-n") 'next-error)
-(global-set-key (kbd "C-p") 'previous-error)
-(add-hook 'python-mode-hook 'flycheck-mode)
-;(add-hook 'prog-mode-hook #'flycheck-mode)
-;(add-hook 'java-mode-hook 'flycheck-mode)
-
-;; Javascript
-(rassq-delete-all 'javascript-mode auto-mode-alist)
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-hook 'js2-mode-hook '(lambda () (add-hook 'after-save-hook 'eslint-fix nil t)))
-(add-hook 'js2-mode-hook '(lambda () (setq tab-width 2)))
-
-
-;; Helm
-; Mostly taken from https://tuhdo.github.io/helm-intro.html
-(require 'helm)
-(require 'helm-config)
-
-; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
-; Changed to "C-c h". Note: We must set "C-c h" globally, because we
-; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
-(global-set-key (kbd "C-c h") 'helm-command-prefix)
-(global-unset-key (kbd "C-x c"))
-
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-x b") 'helm-mini)
-(global-set-key (kbd "C-x C-b") 'helm-mini)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-o") 'helm-semantic-or-imenu)
-
-(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
-(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
-(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
-
-(setq
- helm-split-window-in-side-p       t ; open helm buffer inside current window, not occupy whole other window
- helm-move-to-line-cycle-in-source t ; move to end or beginning of source when reaching top or bottom of source.
- helm-ff-search-library-in-sexp    t ; search for library in `require' and `declare-function' sexp.
- helm-M-x-fuzzy-match              t
- helm-buffers-fuzzy-matching       t
- helm-recentf-fuzzy-match          t
- helm-semantic-fuzzy-match         t
- helm-imenu-fuzzy-match            t
-)
-
-;;; helm-lean
-; https://www.reddit.com/r/emacs/comments/2z7nbv/lean_helm_window/
-(set-face-attribute 'helm-source-header nil :height 0.1)
-(setq
- helm-autoresize-max-height 30
- helm-autoresize-min-height 30
- helm-display-header-line nil
-)
-(helm-autoresize-mode 1)
-(defvar helm-source-header-default-background (face-attribute 'helm-source-header :background))
-(defvar helm-source-header-default-foreground (face-attribute 'helm-source-header :foreground))
-(defvar helm-source-header-default-box (face-attribute 'helm-source-header :box))
-
-(helm-mode 1)
-
-;; Scala
-(add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
-
-;; Java
-(defun java-arglist-intro ()
-      (c-set-offset 'arglist-intro '++))
-(add-hook 'java-mode-hook 'java-arglist-intro)
-
-(add-hook 'java-mode-hook
-          (lambda()
-            (local-unset-key (kbd "C-d"))))
-
-;; Golang
-(add-hook 'before-save-hook #'gofmt-before-save)
+;; Smart-home
+(defun smart-beginning-of-line ()
+  "Move point to first non-whitespace character or beginning-of-line."
+  (interactive) ; Use (interactive "^") in Emacs 23 to make shift-select work
+  (let ((oldpos (point)))
+    (back-to-indentation)
+    (and (= oldpos (point))
+         (beginning-of-line))))
 
 ;; Misc keybindings
+(global-set-key [home] 'smart-beginning-of-line) 
 (global-set-key (kbd "C-d") 'kill-whole-line)
 (global-set-key (kbd "M-[ C") 'forward-word)
 (global-set-key (kbd "M-[ D") 'backward-word)
@@ -294,6 +152,13 @@ Non-interactive arguments are Begin End Regexp"
 (global-unset-key (kbd "C-z")) ; stop the fat-finger C-z suspending
 (global-unset-key (kbd "C-v")) ; lame scrolling
 (global-set-key (kbd "C-z") 'set-mark-command) ; alternative mark because cmder is lame 
+
+
+;; Indentation
+(setq-default
+  indent-tabs-mode nil
+  tab-width 2
+  )
 
 ;; Misc settings
 (delete-selection-mode 1)
@@ -308,8 +173,3 @@ Non-interactive arguments are Begin End Regexp"
  vc-follow-symlinks t
 )
 (show-paren-mode 1)
-(global-auto-revert-mode 1)
-(add-to-list 'auto-mode-alist '("/nginx/sites-\\(available\\|enabled\\)/" . nginx-mode))
-
-(provide 'init)
-;;; init.el ends here
