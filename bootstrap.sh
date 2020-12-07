@@ -84,3 +84,6 @@ fi
     cat ~/.base16/xresources/xresources/base16-tomorrow-night-256.Xresources
     cat ~/dotfiles/utils.Xresources
 ) > ~/.Xresources
+
+# Tmux
+[ ! -d ~/.tmux/plugins/tpm ] && mkdir -p ~/.tmux/plugins/tpm && git clone --depth 1 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
