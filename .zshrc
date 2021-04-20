@@ -31,6 +31,7 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/colored-man-pages
     zgen oh-my-zsh plugins/pip
     zgen oh-my-zsh plugins/tmux
+    zgen oh-my-zsh plugins/ssh-agent
 
     #zgen load denysdovhan/spaceship-zsh-theme spaceship
     zgen load $HOME/dotfiles/gg-clean.zsh-theme
