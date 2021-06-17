@@ -87,3 +87,12 @@ fi
 
 # Tmux
 [ ! -d ~/.tmux/plugins/tpm ] && mkdir -p ~/.tmux/plugins/tpm && git clone --depth 1 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# Utils
+if [ ! type rg >/dev/null 2>&1 ] ; then
+    echo "Install 'rg' by following installation guide in https://github.com/BurntSushi/ripgrep"
+fi
+
+if [ ! type exa >/dev/null 2>&1 ] ; then
+    echo "Install 'exa' by downloading from exa releases in https://github.com/ogham/exa/releases"
+fi
