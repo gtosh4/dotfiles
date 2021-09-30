@@ -88,17 +88,14 @@ fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+export PATH="./node_modules/.bin:$PATH"
 
 [[ -e ~/.cargo/env ]] && source ~/.cargo/env
 
-# Force xterm-16color because we want the colors to be applied regardless of TERM set.
-# Also because it's missing the rxvt-16color TERM that we made up.
-if [[ 'Darwin' = "$(uname -s)" ]]; then
-    eval $(TERM=xterm-16color gdircolors -b $HOME/LS_COLORS)
-else
-    eval $(TERM=xterm-16color dircolors -b $HOME/LS_COLORS)
+if type vivid >/dev/null 2>&1 ; then
+    export LS_COLORS="$(vivid generate tomorrownight)"
+    zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")';
 fi
-zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)*==34=34}:${(s.:.)LS_COLORS}")';
 
 function chpwd() {
     emulate -L zsh

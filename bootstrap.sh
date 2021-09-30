@@ -21,7 +21,6 @@ ln -s -t ~ \
     $DOTFILES/.gitconfig \
     $DOTFILES/.git-templates \
     $DOTFILES/.gitignore_global \
-    $DOTFILES/LS_COLORS \
     $DOTFILES/.gitignore_global
 
 # Link all scripts to bin
@@ -71,6 +70,7 @@ elif [ ! -d ~/local/py-env ] && (type virtualenv >/dev/null 2>&1); then
     source ~/local/py-env/bin/activate
 fi
 
+
 # Add update to crontab
 if [ $(crontab -l | grep -c "update-dotfiles.sh") -eq 0 ]; then
     command="$DOTFILES/bin/update-dotfiles.sh"
@@ -88,11 +88,39 @@ fi
 # Tmux
 [ ! -d ~/.tmux/plugins/tpm ] && mkdir -p ~/.tmux/plugins/tpm && git clone --depth 1 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-# Utils
-if [ ! type rg >/dev/null 2>&1 ] ; then
-    echo "Install 'rg' by following installation guide in https://github.com/BurntSushi/ripgrep"
+if ! type gh >/dev/null 2>&1 ; then
+    echo "Install 'gh' by following instructions on https://github.com/cli/cli/blob/trunk/docs/install_linux.md"
+else
+    OLD_DIR=$(pwd)
+    TMP=$(mktemp -d)
+    
+    # LS_COLORS (vivid) setup
+    if ! type vivid >/dev/null 2>&1 ; then
+        gh release download -R "sharkdp/vivid" -p 'vivid_*amd64.deb' -D $TMP
+        ls -la $TMP
+        sudo sh -c "dpkg -i $TMP/vivid_*amd64.deb"
+    fi
+
+    if ! type exa >/dev/null 2>&1 ; then
+        # Manual installation until Ubuntu LTS supports exa
+        gh release download -R "ogham/exa" -p 'exa-linux-x86_64-v*.zip' -D $TMP
+        cd $TMP
+        mkdir exa
+        unzip 'exa-linux-x86_64-v*.zip' -d exa
+        sudo mv exa/bin/exa /usr/local/bin/
+        sudo mv exa/man/exa.1 /usr/share/man/man1/
+        sudo mv exa/man/exa_colors.5 /usr/share/man/man5/
+        sudo mv exa/completions/exa.zsh /usr/local/share/zsh/site-functions/
+        cd $OLD_DIR
+    fi
+
+    rm -rf $TMP
 fi
 
-if [ ! type exa >/dev/null 2>&1 ] ; then
-    echo "Install 'exa' by downloading from exa releases in https://github.com/ogham/exa/releases"
+mkdir -p ~/.config/vivid/themes
+[ ! -e ~/.config/vivid/themes/tomorrownight.yml ] && ln -s $DOTFILES/vivid_tomorrownight.yml ~/.config/vivid/themes/tomorrownight.yml
+
+# Utils
+if ! type rg >/dev/null 2>&1 ; then
+    sudo apt-get install ripgrep
 fi
