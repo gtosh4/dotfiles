@@ -40,6 +40,8 @@ if ! zgen saved; then
     zgen load zsh-users/zsh-completions src
     zgen load zsh-users/zsh-autosuggestions
     
+    zgen load lukechilds/zsh-better-npm-completion
+    
     zgen load unixorn/autoupdate-zgen
 
     # generate the init script from plugins above

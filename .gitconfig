@@ -1,12 +1,16 @@
 [alias]
     s = status
     c = commit
+    sw = switch
     co = checkout
+    cob = checkout -tb
     l = log --graph --pretty=simple --all --not --remotes
     b = branch
     dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%ar%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
     d = diff
     ds = diff --stat
+    dh = diff HEAD
+    rbi = rebase --interactive
 [color]
     diff = auto
     status = auto
