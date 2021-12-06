@@ -11,6 +11,7 @@
     ds = diff --stat
     dh = diff HEAD
     rbi = rebase --interactive
+    pr = pull --rebase
 [color]
     diff = auto
     status = auto
