@@ -87,8 +87,9 @@
 (load vde/custom-file 'no-error 'no-message))
 
 ;; Misc Settings
-(xclip-mode 1)
+;(xclip-mode 1)
 (global-hl-line-mode 1)
+(menu-bar-mode -1)
 
 ;; Line settings
 (defun set-linum-format ()
