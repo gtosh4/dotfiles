@@ -92,6 +92,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 export PATH="./node_modules/.bin:$PATH"
 
+export PATH="$HOME/.poetry/bin:$PATH"
+[[ -e ~/.poetry/env ]] && source ~/.poetry/env
+export PATH="$HOME/.pyenv/bin:$PATH"
+
 [[ -e ~/.cargo/env ]] && source ~/.cargo/env
 
 if type vivid >/dev/null 2>&1 ; then
@@ -125,3 +129,4 @@ dedupe_path
 
 # https://github.com/Microsoft/vscode/issues/13189#issuecomment-370427397
 export ELECTRON_TRASH=gio
+
