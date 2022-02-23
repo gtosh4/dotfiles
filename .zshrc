@@ -95,6 +95,10 @@ export PATH="./node_modules/.bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
 [[ -e ~/.poetry/env ]] && source ~/.poetry/env
 export PATH="$HOME/.pyenv/bin:$PATH"
+if type pyenv >/dev/null 2>&1 ; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
 
 [[ -e ~/.cargo/env ]] && source ~/.cargo/env
 
