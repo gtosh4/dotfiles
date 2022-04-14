@@ -19,8 +19,8 @@ ln -s -t ~ \
     $DOTFILES/.pylintrc \
     $DOTFILES/.ackrc \
     $DOTFILES/.gitconfig \
+    $DOTFILES/.gitattributes \
     $DOTFILES/.git-templates \
-    $DOTFILES/.gitignore_global \
     $DOTFILES/.gitignore_global
 
 # Link all scripts to bin
