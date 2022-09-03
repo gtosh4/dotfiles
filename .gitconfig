@@ -31,6 +31,7 @@
     simple=%C(auto)%h%d [%ci] %s - %cn
 [diff]
     algorithm = patience
+	external = difft
 [format]
     pretty=simple
 [merge]
