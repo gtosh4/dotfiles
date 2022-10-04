@@ -14,48 +14,46 @@ CASE_SENSITIVE="true"
 DISABLE_CORRECTION="true"
 DISABLE_LS_COLORS="true" # Don't alias ls (we do above)
 
-# load zgen
-source "${HOME}/.zgen/zgen.zsh"
+# load zgenom
+source "${HOME}/.zgenom/zgenom.zsh"
+
+# Check for plugin and zgenom updates every 7 days
+# This does not increase the startup time.
+zgenom autoupdate
+
+ZGEN_PREZTO_LOAD_DEFAULT=0
 
 # if the init scipt doesn't exist
-if ! zgen saved; then
-    #zgen load denysdovhan/spaceship-zsh-theme spaceship
-#    zgen load $HOME/dotfiles/gg-clean.zsh-theme
+if ! zgenom saved; then
+    zgenom load --completion MenkeTechnologies/zsh-cargo-completion
 
-    zgen load zsh-users/zsh-syntax-highlighting
-    zgen load zsh-users/zsh-completions src
-    zgen load zsh-users/zsh-autosuggestions
-    
-    zgen load lukechilds/zsh-better-npm-completion
-    
-    zgen load unixorn/autoupdate-zgen
+    zgenom prezto syntax-highlighting highlighters 'main' 'brackets' 'pattern' 'line' 'cursor' 'root'
+    zgenom prezto 'git:alias' skip yes
+    zgenom prezto
+    zgenom prezto environment
+    zgenom prezto terminal
+    zgenom prezto editor
+    zgenom prezto history
+    zgenom prezto directory
+    zgenom prezto spectrum
+    zgenom prezto utility
+    zgenom prezto node
+    zgenom prezto git
+    zgenom prezto completion
+    zgenom prezto syntax-highlighting
+    zgenom prezto autosuggestions
+
+    zgenom clean
 
     # generate the init script from plugins above
-    zgen save
+    zgenom save
 fi
 
 setopt append_history
-setopt extended_history
-setopt hist_expire_dups_first
-setopt hist_ignore_all_dups
-setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt hist_reduce_blanks
-setopt hist_save_no_dups
-setopt hist_verify
-setopt share_history
 setopt pushd_ignore_dups
 
-HISTSIZE=100000
-SAVEHIST=100000
-HISTFILE=~/.zsh_history
-export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
-
-
-zstyle ':completion:*' accept-exact '*(N)'
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh/cache
-zstyle ':completion:*' completer _complete _ignored _files
 
 [[ -e ~/.aliases ]] && source ~/.aliases
 [[ -e ~/.zshkeys ]] && source ~/.zshkeys

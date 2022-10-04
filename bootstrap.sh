@@ -54,11 +54,10 @@ done
 
 # Base16
 [ ! -d ~/.base16 ] && mkdir ~/.base16
-[ ! -d ~/.base16/xresources ] && git clone --depth 1 git://github.com/base16-templates/base16-xresources.git ~/.base16/xresources
-[ ! -d ~/.base16/tomorrow ] && git clone --depth 1 git://github.com/chriskempson/base16-tomorrow-scheme.git ~/.base16/tomorrow
+[ ! -d ~/.base16/xresources ] && git clone --depth 1 https://github.com/base16-project/base16-xresources.git ~/.base16/xresources
+[ ! -d ~/.base16/tomorrow ] && git clone --depth 1 https://github.com/chriskempson/tomorrow-theme ~/.base16/tomorrow
 
-# zgen
-[ ! -d ~/.zgen ] && git clone --depth 1 git://github.com/tarjoilija/zgen.git ~/.zgen
+[ ! -d ~/.zgenom ] && git clone --depth 1 https://github.com/jandamm/zgenom.git ~/.zgenom
 
 # Python virtualenv setup
 [ ! -d ~/local ] && mkdir ~/local
