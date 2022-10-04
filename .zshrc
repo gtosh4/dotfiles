@@ -19,22 +19,8 @@ source "${HOME}/.zgen/zgen.zsh"
 
 # if the init scipt doesn't exist
 if ! zgen saved; then
-
-    zgen oh-my-zsh
-    zgen oh-my-zsh plugins/git
-    zgen oh-my-zsh plugins/sudo
-    zgen oh-my-zsh plugins/python
-    zgen oh-my-zsh plugins/golang
-    zgen oh-my-zsh plugins/docker
-    zgen oh-my-zsh plugins/docker-compose
-    zgen oh-my-zsh plugins/systemd
-    zgen oh-my-zsh plugins/colored-man-pages
-    zgen oh-my-zsh plugins/pip
-    zgen oh-my-zsh plugins/tmux
-    zgen oh-my-zsh plugins/ssh-agent
-
     #zgen load denysdovhan/spaceship-zsh-theme spaceship
-    zgen load $HOME/dotfiles/gg-clean.zsh-theme
+#    zgen load $HOME/dotfiles/gg-clean.zsh-theme
 
     zgen load zsh-users/zsh-syntax-highlighting
     zgen load zsh-users/zsh-completions src
@@ -139,4 +125,6 @@ dedupe_path
 
 # https://github.com/Microsoft/vscode/issues/13189#issuecomment-370427397
 export ELECTRON_TRASH=gio
+
+eval "$(starship init zsh)"
 
