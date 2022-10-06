@@ -14,41 +14,6 @@ CASE_SENSITIVE="true"
 DISABLE_CORRECTION="true"
 DISABLE_LS_COLORS="true" # Don't alias ls (we do above)
 
-# load zgenom
-source "${HOME}/.zgenom/zgenom.zsh"
-
-# Check for plugin and zgenom updates every 7 days
-# This does not increase the startup time.
-zgenom autoupdate
-
-ZGEN_PREZTO_LOAD_DEFAULT=0
-
-# if the init scipt doesn't exist
-if ! zgenom saved; then
-    zgenom load --completion MenkeTechnologies/zsh-cargo-completion
-
-    zgenom prezto syntax-highlighting highlighters 'main' 'brackets' 'pattern' 'line' 'cursor' 'root'
-    zgenom prezto 'git:alias' skip yes
-    zgenom prezto
-    zgenom prezto environment
-    zgenom prezto terminal
-    zgenom prezto editor
-    zgenom prezto history
-    zgenom prezto directory
-    zgenom prezto spectrum
-    zgenom prezto utility
-    zgenom prezto node
-    zgenom prezto git
-    zgenom prezto completion
-    zgenom prezto syntax-highlighting
-    zgenom prezto autosuggestions
-
-    zgenom clean
-
-    # generate the init script from plugins above
-    zgenom save
-fi
-
 setopt append_history
 setopt hist_ignore_space
 setopt hist_reduce_blanks
@@ -124,5 +89,39 @@ dedupe_path
 # https://github.com/Microsoft/vscode/issues/13189#issuecomment-370427397
 export ELECTRON_TRASH=gio
 
-eval "$(starship init zsh)"
+if type terraform 2>&1 ; then 
+    autoload -U +X bashcompinit && bashcompinit
+    complete -o nospace -C /usr/bin/terraform terraform
+fi
 
+# load zgenom
+source "${HOME}/.zgenom/zgenom.zsh"
+
+# Check for plugin and zgenom updates every 7 days
+# This does not increase the startup time.
+zgenom autoupdate
+
+ZGEN_PREZTO_LOAD_DEFAULT=0
+if ! zgenom saved; then
+    zgenom prezto syntax-highlighting highlighters 'main' 'brackets' 'pattern' 'line' 'cursor' 'root'
+    zgenom prezto syntax-highlighting color yes
+    zgenom prezto 'git:alias' skip yes
+    zgenom prezto
+    zgenom prezto environment
+    zgenom prezto terminal
+    zgenom prezto editor
+    zgenom prezto history
+    zgenom prezto directory
+    zgenom prezto spectrum
+    zgenom prezto utility
+    zgenom prezto node
+    zgenom prezto git
+    zgenom prezto completion
+    zgenom prezto syntax-highlighting
+    zgenom prezto autosuggestions
+
+    zgenom clean
+    zgenom save
+fi
+
+eval "$(starship init zsh)"
