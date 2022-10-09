@@ -23,6 +23,11 @@ ln -s -t ~ \
     $DOTFILES/.git-templates \
     $DOTFILES/.gitignore_global
 
+mkdir -p ~/.config/zellij
+ln -s $DOTFILES/zellij.config ~/.config/zellij/config.yaml
+
+ln -s -t ~/.config $DOTFILES/starship.toml
+
 # Link all scripts to bin
 [ ! -d ~/bin ] && mkdir ~/bin
 ln -s -t ~/bin $DOTFILES/bin/*

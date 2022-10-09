@@ -89,7 +89,7 @@ dedupe_path
 # https://github.com/Microsoft/vscode/issues/13189#issuecomment-370427397
 export ELECTRON_TRASH=gio
 
-if type terraform 2>&1 ; then 
+if hash terraform ; then 
     autoload -U +X bashcompinit && bashcompinit
     complete -o nospace -C /usr/bin/terraform terraform
 fi
