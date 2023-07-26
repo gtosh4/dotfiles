@@ -24,7 +24,7 @@ ln -s -t ~ \
     $DOTFILES/.gitignore_global
 
 mkdir -p ~/.config/zellij
-ln -s $DOTFILES/zellij.yaml ~/.config/zellij/config.yaml
+ln -s $DOTFILES/zellij.kdl ~/.config/zellij/config.kdl
 
 ln -s -t ~/.config $DOTFILES/starship.toml
 

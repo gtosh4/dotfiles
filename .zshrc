@@ -15,7 +15,6 @@ DISABLE_CORRECTION="true"
 DISABLE_LS_COLORS="true" # Don't alias ls (we do above)
 
 setopt append_history
-setopt hist_ignore_space
 setopt hist_reduce_blanks
 setopt pushd_ignore_dups
 
@@ -114,6 +113,7 @@ if ! zgenom saved; then
     zgenom prezto directory
     zgenom prezto spectrum
     zgenom prezto utility
+    zgenom prezto ssh
     zgenom prezto node
     zgenom prezto git
     zgenom prezto completion
@@ -123,5 +123,10 @@ if ! zgenom saved; then
     zgenom clean
     zgenom save
 fi
+
+zstyle ':prezto:module:ssh:load' identities 'id_rsa'
+
+# https://github.com/zsh-users/zsh-autosuggestions/issues/548#issuecomment-1110133726
+unsetopt PATH_DIRS
 
 eval "$(starship init zsh)"

@@ -20,7 +20,7 @@
 [core]
     excludesfile = ~/.gitignore_global
     pager = less -FMRiX
-	attributesfile = /home/gordon/.gitattributes
+    attributesfile = /home/gordon/.gitattributes
 [branch]
     autosetupmerge = always
     autosetuprebase = always
@@ -31,17 +31,17 @@
     simple=%C(auto)%h%d [%ci] %s - %cn
 [diff]
     algorithm = patience
-	external = difft
+#    external = difft
 [format]
     pretty=simple
 [merge]
-	tool = meld
+    tool = meld
 [include]
     path=.gitconfig_sys
-[url "git@github.com:"]
+[url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 [init]
 	templatedir = ~/.git-templates
 	defaultBranch = main
 [diff "json"]
-	textconv = jq '.' $1
+    textconv = jq '.' $1
