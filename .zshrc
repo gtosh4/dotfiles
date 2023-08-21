@@ -1,15 +1,3 @@
-# Do this before OMZ (instead of in .aliases) because the mac versions of these
-# don't act the same as the coreutils ones which will break in OMZ loading.
-if [[ 'Darwin' = "$(uname -s)" ]]; then
-    alias readlink=greadlink
-    alias ln=gln
-    alias ls='gls -FB --color=auto'
-    alias rm='grm --preserve-root'
-else
-    alias ls='ls -FB --color=auto'
-    alias rm='rm --preserve-root'
-fi
-
 CASE_SENSITIVE="true"
 DISABLE_CORRECTION="true"
 DISABLE_LS_COLORS="true" # Don't alias ls (we do above)
@@ -18,9 +6,6 @@ setopt append_history
 setopt hist_reduce_blanks
 setopt pushd_ignore_dups
 
-
-[[ -e ~/.aliases ]] && source ~/.aliases
-[[ -e ~/.zshkeys ]] && source ~/.zshkeys
 
 export EDITOR='emacsc'
 alias e="$EDITOR"
@@ -130,3 +115,6 @@ zstyle ':prezto:module:ssh:load' identities 'id_rsa'
 unsetopt PATH_DIRS
 
 eval "$(starship init zsh)"
+
+[[ -e ~/.aliases ]] && source ~/.aliases
+[[ -e ~/.zshkeys ]] && source ~/.zshkeys
