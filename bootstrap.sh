@@ -39,24 +39,6 @@ ln -s .Xresources ~/.Xdefaults
 [ ! -d ~/.emacs.d ] && mkdir ~/.emacs.d
 ln -s -t ~/.emacs.d $DOTFILES/.emacs.d/*
 
-# Fonts
-[ ! -d ~/.fonts ] && mkdir ~/.fonts
-ln -s -t ~/.fonts $DOTFILES/.fonts/*
-for type in Bold Light Medium Regular Retina; do
-    [ ! -e ~/.fonts/FiraCode-${type}.ttf ] && wget -O ~/.fonts/FiraCode-${type}.ttf \
-         "https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-${type}.ttf?raw=true";
-done
-
-# terminfo
-[ ! -d ~/.terminfo ] && mkdir ~/.terminfo
-for t in rxvt screen xterm; do
-    infocmp $t |
-        sed -e 's/colors#8/colors#16/' \
-            -e 's/pairs#64/pairs#256/' \
-            -e "s/^$t|/$t-16color|/" |
-        tic -o ~/.terminfo -
-done
-
 # Base16
 [ ! -d ~/.base16 ] && mkdir ~/.base16
 [ ! -d ~/.base16/xresources ] && git clone --depth 1 https://github.com/base16-project/base16-xresources.git ~/.base16/xresources
@@ -68,9 +50,6 @@ done
 [ ! -d ~/local ] && mkdir ~/local
 if type python3 >/dev/null 2>&1 && [ ! -d ~/local/py-env ] ; then
     python3 -m venv ~/local/py-env
-    source ~/local/py-env/bin/activate
-elif [ ! -d ~/local/py-env ] && (type virtualenv >/dev/null 2>&1); then
-    virtualenv ~/local/py-env
     source ~/local/py-env/bin/activate
 fi
 
@@ -89,42 +68,55 @@ fi
     cat ~/dotfiles/utils.Xresources
 ) > ~/.Xresources
 
-# Tmux
-[ ! -d ~/.tmux/plugins/tpm ] && mkdir -p ~/.tmux/plugins/tpm && git clone --depth 1 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-if ! type gh >/dev/null 2>&1 ; then
-    echo "Install 'gh' by following instructions on https://github.com/cli/cli/blob/trunk/docs/install_linux.md"
-else
-    OLD_DIR=$(pwd)
-    TMP=$(mktemp -d)
-    
-    # LS_COLORS (vivid) setup
-    if ! type vivid >/dev/null 2>&1 ; then
-        gh release download -R "sharkdp/vivid" -p 'vivid_*amd64.deb' -D $TMP
-        ls -la $TMP
-        sudo sh -c "dpkg -i $TMP/vivid_*amd64.deb"
-    fi
-
-    if ! type exa >/dev/null 2>&1 ; then
-        # Manual installation until Ubuntu LTS supports exa
-        gh release download -R "ogham/exa" -p 'exa-linux-x86_64-v*.zip' -D $TMP
-        cd $TMP
-        mkdir exa
-        unzip 'exa-linux-x86_64-v*.zip' -d exa
-        sudo mv exa/bin/exa /usr/local/bin/
-        sudo mv exa/man/exa.1 /usr/share/man/man1/
-        sudo mv exa/man/exa_colors.5 /usr/share/man/man5/
-        sudo mv exa/completions/exa.zsh /usr/local/share/zsh/site-functions/
-        cd $OLD_DIR
-    fi
-
-    rm -rf $TMP
-fi
-
 mkdir -p ~/.config/vivid/themes
 [ ! -e ~/.config/vivid/themes/tomorrownight.yml ] && ln -s $DOTFILES/vivid_tomorrownight.yml ~/.config/vivid/themes/tomorrownight.yml
 
+if ! type cargo >/dev/null 2>&1 ; then
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    source ~/.cargo/env
+fi
+
 # Utils
+## cargo install zoxide eza bat ripgrep fd-find sd btm zellij git-delta
+if ! type z >/dev/null 2>&1 ; then
+    # https://github.com/ajeetdsouza/zoxide
+    cargo install zoxide
+fi
+if ! type eza >/dev/null 2>&1 ; then
+    # https://github.com/eza-community/eza
+    cargo install eza
+fi
+if ! type bat >/dev/null 2>&1 ; then
+    # https://github.com/sharkdp/bat
+    cargo install bat
+fi
 if ! type rg >/dev/null 2>&1 ; then
-    sudo apt-get install ripgrep
+    # https://github.com/BurntSushi/ripgrep
+    cargo install ripgrep
+fi
+if ! type fd >/dev/null 2>&1 ; then
+    # https://crates.io/crates/fd-find
+    cargo install fd-find
+fi
+if ! type sd >/dev/null 2>&1 ; then
+    # https://github.com/chmln/sd
+    cargo install sd
+fi
+if ! type btm >/dev/null 2>&1 ; then
+    cargo install bottom
+fi
+if ! type zellij >/dev/null 2>&1 ; then
+    cargo install zellij
+fi
+if ! type delta >/dev/null 2>&1 ; then
+    # https://github.com/dandavison/delta
+    cargo install git-delta
+fi
+if ! type starship >/dev/null 2>&1 ; then
+    # https://starship.rs/
+    cargo install starship
+fi
+if ! type vivid >/dev/null 2>&1 ; then
+    # https://github.com/sharkdp/vivid
+    cargo install vivid
 fi

@@ -18,16 +18,12 @@ alias gitsubupdate='git submodule update --init --recursive'
 alias cd='pushd'
 alias cd-='popd'
 
-# tmux
-alias tmux='tmux -2'
-alias tma='tmux -S ~/.tmux-socket new -A -s default'
-alias tmcp='tmux show-buffer | xclip -i -selection clipboard'
 
 ## ls
-alias l='exa -aFlT -L 1 -I ".git" --group-directories-first'
-alias ll='exa -aFlT -L 2 -I ".git|node_modules|vendor" --group-directories-first'
-alias lll='exa -aFlT -L 3 -I ".git|node_modules|vendor" --group-directories-first'
-alias la='exa -aa -s extension -s name'
+alias l='eza -aFlT -L 1 -I ".git" --group-directories-first'
+alias ll='eza -aFlT -L 2 -I ".git|node_modules|vendor" --group-directories-first'
+alias lll='eza -aFlT -L 3 -I ".git|node_modules|vendor" --group-directories-first'
+alias la='eza -aa -s extension -s name'
 
 ## Command line head / tail shortcuts
 alias -g H='| head'
@@ -38,19 +34,13 @@ alias -g NUL="> /dev/null 2>&1"
 alias lf='less +F'
 alias -g LF="| lf"
 
-## files
-alias dud='du --max-depth=1 -h'
-alias duf='du -sh *'
-alias fd='find . -type d -name'
-alias ff='find . -type f -name'
-
 ## Docker (and related)
 alias dockps='docker ps --format="{{.Names}}[{{.Ports}}]: {{.Command}} ({{.Status}})"'
 alias dockc='docker-compose'
 alias k=kubectl
 
 ## other
-alias grep='grep --color=auto'
+alias cat='bat'
 alias emacskill='emacsclient -e "(kill-emacs)"'
 alias historysummary="history | awk '{a[\$2]++} END{for(i in a){printf \"%5d\t%s\n\",a[i],i}}' | sort -rn | head"
 alias c="code ."

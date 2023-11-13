@@ -19,7 +19,7 @@
     ui = auto
 [core]
     excludesfile = ~/.gitignore_global
-    pager = less -FMRiX
+    pager = delta
     attributesfile = /home/gordon/.gitattributes
 [branch]
     autosetupmerge = always
@@ -30,18 +30,23 @@
 [pretty]
     simple=%C(auto)%h%d [%ci] %s - %cn
 [diff]
-    algorithm = patience
-#    external = difft
+    colorMoved = default
 [format]
     pretty=simple
 [merge]
-    tool = meld
+    conflictstyle = diff3
 [include]
     path=.gitconfig_sys
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
+[interactive]
+    diffFilter = delta --color-only
 [init]
 	templatedir = ~/.git-templates
 	defaultBranch = main
-[diff "json"]
-    textconv = jq '.' $1
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+[user]
+	email = gtosh4@gmail.com
+	name = G G
