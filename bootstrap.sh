@@ -44,6 +44,7 @@ ln -s -t ~/.emacs.d $DOTFILES/.emacs.d/*
 [ ! -d ~/.base16/xresources ] && git clone --depth 1 https://github.com/base16-project/base16-xresources.git ~/.base16/xresources
 [ ! -d ~/.base16/tomorrow ] && git clone --depth 1 https://github.com/chriskempson/tomorrow-theme ~/.base16/tomorrow
 
+
 [ ! -d ~/.zgenom ] && git clone --depth 1 https://github.com/jandamm/zgenom.git ~/.zgenom
 
 # Python virtualenv setup
@@ -75,6 +76,9 @@ if ! type cargo >/dev/null 2>&1 ; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     source ~/.cargo/env
 fi
+
+mkdir -p ~/.config/bat
+ln -s $DOTFILES/bat.conf ~/.config/bat/config
 
 # Utils
 ## cargo install zoxide eza bat ripgrep fd-find sd btm zellij git-delta

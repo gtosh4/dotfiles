@@ -45,8 +45,10 @@
 	templatedir = ~/.git-templates
 	defaultBranch = main
 [delta]
-    navigate = true    # use n and N to move between diff sections
-    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+    navigate = true
+    light = false
+    side-by-side = true
+    theme = base16-256
 [user]
 	email = gtosh4@gmail.com
 	name = G G
