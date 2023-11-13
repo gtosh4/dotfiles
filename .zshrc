@@ -115,6 +115,7 @@ zstyle ':prezto:module:ssh:load' identities 'id_rsa'
 unsetopt PATH_DIRS
 
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 
 [[ -e ~/.aliases ]] && source ~/.aliases
 [[ -e ~/.zshkeys ]] && source ~/.zshkeys

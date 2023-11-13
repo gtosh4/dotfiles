@@ -78,7 +78,7 @@ fi
 
 # Utils
 ## cargo install zoxide eza bat ripgrep fd-find sd btm zellij git-delta
-if ! type z >/dev/null 2>&1 ; then
+if ! type zoxide >/dev/null 2>&1 ; then
     # https://github.com/ajeetdsouza/zoxide
     cargo install zoxide
 fi
