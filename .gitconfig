@@ -35,8 +35,6 @@
     pretty=simple
 [merge]
     conflictstyle = diff3
-[include]
-    path=.gitconfig_sys
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 [interactive]
@@ -52,3 +50,6 @@
 [user]
 	email = gtosh4@gmail.com
 	name = G G
+
+[include]
+    path=.gitconfig_sys
