@@ -5,7 +5,7 @@ DISABLE_LS_COLORS="true" # Don't alias ls (we do above)
 setopt append_history
 setopt hist_reduce_blanks
 setopt pushd_ignore_dups
-
+zstyle ':prezto:module:utility' correct 'no'
 
 export EDITOR='emacsc'
 alias e="$EDITOR"
@@ -109,7 +109,7 @@ if ! zgenom saved; then
     zgenom save
 fi
 
-zstyle ':prezto:module:ssh:load' identities 'id_rsa'
+zstyle ':prezto:module:ssh:load' identities 'id_ed25519'
 
 # https://github.com/zsh-users/zsh-autosuggestions/issues/548#issuecomment-1110133726
 unsetopt PATH_DIRS
