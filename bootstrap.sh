@@ -26,6 +26,11 @@ ln -s -t ~ \
 mkdir -p ~/.config/zellij
 ln -s $DOTFILES/zellij.kdl ~/.config/zellij/config.kdl
 
+# this is deliberately the opposite direction
+# since zshsys is machine-specific, but it's convenient to have
+# a symlink to it here (which is gitignored) for editing.
+ln -s $HOME/.zshsys $DOTFILES/.zshsys
+
 ln -s -t ~/.config $DOTFILES/starship.toml
 
 # Link all scripts to bin
