@@ -12,7 +12,7 @@
     dh = diff HEAD
     rbi = rebase --interactive
     pr = pull --rebase
-    fix = commit --fixup=HEAD
+    fix = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
 [color]
     diff = auto
     status = auto
@@ -36,6 +36,8 @@
     pretty=simple
 [merge]
     conflictstyle = diff3
+[rebase]
+    autosquash = true
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 [interactive]
