@@ -1,18 +1,7 @@
 #!/bin/sh
 
 # git
-alias gits='git status'
-alias gitb='git branch -vv'
-alias gitco='git checkout'
-alias gitsb='git show-branch'
-alias gitcob='git checkout -tb'
-alias gitpr='git stash && git pull --rebase && git stash pop'
-alias gitprs='git pull --rebase && clear && git status'
-alias gitl='git l'
-alias gitrbi='git rebase -i'
-alias lgits='clear; git status' # Forgot to use ctrl to clear
-alias gitfix='git commit --fixup HEAD; GIT_SEQUENCE_EDITOR=: git rebase -i --autosquash'
-alias gitsubupdate='git submodule update --init --recursive'
+alias gs='git s'
 
 ## ls
 alias l='eza -aFlT -L 1 -I ".git" --group-directories-first'

@@ -12,6 +12,7 @@
     dh = diff HEAD
     rbi = rebase --interactive
     pr = pull --rebase
+    fix = commit --fixup=HEAD
 [color]
     diff = auto
     status = auto
