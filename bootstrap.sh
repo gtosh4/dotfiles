@@ -7,6 +7,23 @@ fi
 
 DOTFILES=$(dirname $(readlink -f -n $0))
 
+
+if type apt >/dev/null 2>&1 ; then
+    packages=""
+    if ! type zsh >/dev/null 2>&1 ; then
+        packages+=" zsh"
+    fi
+    if ! type python3 >/dev/null 2>&1 ; then
+        packages+=" python3 python3-venv"
+    fi
+    if ! type emacs >/dev/null 2>&1 ; then
+        packages+=" emacs"
+    fi
+    if [ ! -z "$packages" ]; then
+        sudo apt install -y ${packages}
+    fi
+fi
+
 # Link dot files
 ln -s -t ~ \
     $DOTFILES/.zshrc \
@@ -78,7 +95,7 @@ mkdir -p ~/.config/vivid/themes
 [ ! -e ~/.config/vivid/themes/tomorrownight.yml ] && ln -s $DOTFILES/vivid_tomorrownight.yml ~/.config/vivid/themes/tomorrownight.yml
 
 if ! type cargo >/dev/null 2>&1 ; then
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -- -y
     source ~/.cargo/env
 fi
 
@@ -86,46 +103,50 @@ mkdir -p ~/.config/bat
 ln -s $DOTFILES/bat.conf ~/.config/bat/config
 
 # Utils
+packages=""
 ## cargo install zoxide eza bat ripgrep fd-find sd btm zellij git-delta
 if ! type zoxide >/dev/null 2>&1 ; then
     # https://github.com/ajeetdsouza/zoxide
-    cargo install zoxide
+    packages+=" zoxide"
 fi
 if ! type eza >/dev/null 2>&1 ; then
     # https://github.com/eza-community/eza
-    cargo install eza
+    packages+=" eza"
 fi
 if ! type bat >/dev/null 2>&1 ; then
     # https://github.com/sharkdp/bat
-    cargo install bat
+    packages+=" bat"
 fi
 if ! type rg >/dev/null 2>&1 ; then
     # https://github.com/BurntSushi/ripgrep
-    cargo install ripgrep
+    packages+=" ripgrep"
 fi
 if ! type fd >/dev/null 2>&1 ; then
     # https://crates.io/crates/fd-find
-    cargo install fd-find
+    packages+=" fd-find"
 fi
 if ! type sd >/dev/null 2>&1 ; then
     # https://github.com/chmln/sd
-    cargo install sd
+    packages+=" sd"
 fi
 if ! type btm >/dev/null 2>&1 ; then
-    cargo install bottom
+    packages+=" bottom"
 fi
 if ! type zellij >/dev/null 2>&1 ; then
-    cargo install zellij
+    packages+=" zellij"
 fi
 if ! type delta >/dev/null 2>&1 ; then
     # https://github.com/dandavison/delta
-    cargo install git-delta
+    packages+=" git-delta"
 fi
 if ! type starship >/dev/null 2>&1 ; then
     # https://starship.rs/
-    cargo install starship
+    packages+=" starship"
 fi
 if ! type vivid >/dev/null 2>&1 ; then
     # https://github.com/sharkdp/vivid
-    cargo install vivid
+    packages+=" vivid"
+fi
+if [ ! -z "$packages" ]; then
+    cargo install ${packages}
 fi
