@@ -13,6 +13,7 @@
     rbi = rebase --interactive
     pr = pull --rebase
     fix = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
+    pup = push -u origin HEAD
 [color]
     diff = auto
     status = auto

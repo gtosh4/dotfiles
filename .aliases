@@ -17,6 +17,7 @@ alias -g L="| less"
 alias -g NUL="> /dev/null 2>&1"
 alias lf='less +F'
 alias -g LF="| lf"
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
 ## Docker (and related)
 alias dockps='docker ps --format="{{.Names}}[{{.Ports}}]: {{.Command}} ({{.Status}})"'
@@ -33,4 +34,8 @@ alias pip="python3 -m pip"
 if [ -f /etc/wsl.conf ]; then
   # WSL environment
   alias open="wslview"
+fi
+
+if type podman >/dev/null 2>&1 ; then
+  alias docker=podman
 fi
