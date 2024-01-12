@@ -150,3 +150,7 @@ fi
 if [ ! -z "$packages" ]; then
     cargo install ${packages}
 fi
+
+if ! type atuin >/dev/null 2>&1 ; then
+    curl --proto '=https' --tlsv1.2 -sSf https://setup.atuin.sh | bash
+fi
