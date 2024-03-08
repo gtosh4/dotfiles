@@ -1,5 +1,7 @@
 #!/bin/sh
 
+alias rm="nocorrect rm --preserve-root -I"
+
 # git
 alias gs='git s'
 
@@ -38,4 +40,9 @@ fi
 
 if type podman >/dev/null 2>&1 ; then
   alias docker=podman
+fi
+
+# Replace cd with zoxide
+if type z > /dev/null 2>&1 ; then
+  alias cd=z
 fi
