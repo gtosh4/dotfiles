@@ -17,7 +17,7 @@ export PAGER='less -R'
 if [ -e ~/local/py-env/bin/activate ]; then
     # Doesn't matter what this is set to as long as it's not empty
     export VIRTUAL_ENV_DISABLE_PROMPT='off'
-# source ~/local/py-env/bin/activate  # commented out by conda initialize
+    source ~/local/py-env/bin/activate
 fi
 [[ -e ~/.gvm/scripts/gvm ]] && source ~/.gvm/scripts/gvm
 
