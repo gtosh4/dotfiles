@@ -17,7 +17,7 @@ export PAGER='less -R'
 if [ -e ~/local/py-env/bin/activate ]; then
     # Doesn't matter what this is set to as long as it's not empty
     export VIRTUAL_ENV_DISABLE_PROMPT='off'
-    source ~/local/py-env/bin/activate
+# source ~/local/py-env/bin/activate  # commented out by conda initialize
 fi
 [[ -e ~/.gvm/scripts/gvm ]] && source ~/.gvm/scripts/gvm
 
@@ -120,3 +120,4 @@ eval "$(atuin init zsh)"
 
 [[ -e ~/.aliases ]] && source ~/.aliases
 [[ -e ~/.zshkeys ]] && source ~/.zshkeys
+
