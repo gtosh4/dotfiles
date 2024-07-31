@@ -103,53 +103,19 @@ mkdir -p ~/.config/bat
 ln -s $DOTFILES/bat.conf ~/.config/bat/config
 
 # Utils
-packages=""
-## cargo install zoxide eza bat ripgrep fd-find sd btm zellij git-delta
-if ! type zoxide >/dev/null 2>&1 ; then
-    # https://github.com/ajeetdsouza/zoxide
-    packages+=" zoxide"
-fi
-if ! type eza >/dev/null 2>&1 ; then
-    # https://github.com/eza-community/eza
-    packages+=" eza"
-fi
-if ! type bat >/dev/null 2>&1 ; then
-    # https://github.com/sharkdp/bat
-    packages+=" bat"
-fi
-if ! type rg >/dev/null 2>&1 ; then
-    # https://github.com/BurntSushi/ripgrep
-    packages+=" ripgrep"
-fi
-if ! type fd >/dev/null 2>&1 ; then
-    # https://crates.io/crates/fd-find
-    packages+=" fd-find"
-fi
-if ! type sd >/dev/null 2>&1 ; then
-    # https://github.com/chmln/sd
-    packages+=" sd"
-fi
-if ! type btm >/dev/null 2>&1 ; then
-    packages+=" bottom"
-fi
-if ! type zellij >/dev/null 2>&1 ; then
-    packages+=" zellij"
-fi
-if ! type delta >/dev/null 2>&1 ; then
-    # https://github.com/dandavison/delta
-    packages+=" git-delta"
-fi
-if ! type starship >/dev/null 2>&1 ; then
-    # https://starship.rs/
-    packages+=" starship"
-fi
-if ! type vivid >/dev/null 2>&1 ; then
-    # https://github.com/sharkdp/vivid
-    packages+=" vivid"
-fi
-if [ ! -z "$packages" ]; then
-    cargo install ${packages}
-fi
+rustup update
+# https://github.com/ajeetdsouza/zoxide
+# https://github.com/eza-community/eza
+# https://github.com/sharkdp/bat
+# https://github.com/BurntSushi/ripgrep
+# https://crates.io/crates/fd-find
+# https://github.com/chmln/sd
+# https://github.com/ClementTsang/bottom
+# https://github.com/zellij-org/zellij
+# https://github.com/dandavison/delta
+# https://starship.rs/
+# https://github.com/sharkdp/vivid
+cargo install zoxide eza bat ripgrep fd-find sd bottom zellij git-delta starship vivid
 
 if ! type atuin >/dev/null 2>&1 ; then
     curl --proto '=https' --tlsv1.2 -sSf https://setup.atuin.sh | bash
