@@ -25,6 +25,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+[ -e ~/.vmr ] && export PATH="$HOME/.vmr:$PATH"
+
 export PATH="./node_modules/.bin:$PATH"
 
 export PATH="$HOME/.poetry/bin:$PATH"
@@ -73,7 +75,7 @@ dedupe_path
 # https://github.com/Microsoft/vscode/issues/13189#issuecomment-370427397
 export ELECTRON_TRASH=gio
 
-if hash terraform 2>/dev/null ; then 
+if type terraform >/dev/null 2>&1 ; then 
     autoload -U +X bashcompinit && bashcompinit
     complete -o nospace -C /usr/bin/terraform terraform
 fi
@@ -122,6 +124,5 @@ eval "$(zoxide init zsh)"
 
 
 if type atuin >/dev/null 2>&1 ; then
-    . "$HOME/.atuin/bin/env"
-    eval "$(atuin init zsh)"
+    eval "$(atuin init zsh --disable-up-arrow)"
 fi

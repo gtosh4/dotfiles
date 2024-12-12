@@ -43,6 +43,9 @@ ln -s -t ~ \
 mkdir -p ~/.config/zellij
 ln -s $DOTFILES/zellij.kdl ~/.config/zellij/config.kdl
 
+mkdir -p ~/.config/atuin
+ln -s $DOTFILES/atuin.toml ~/.config/atuin/config.toml
+
 # this is deliberately the opposite direction
 # since zshsys is machine-specific, but it's convenient to have
 # a symlink to it here (which is gitignored) for editing.
@@ -115,8 +118,5 @@ rustup update
 # https://github.com/dandavison/delta
 # https://starship.rs/
 # https://github.com/sharkdp/vivid
-cargo install zoxide eza bat ripgrep fd-find sd bottom zellij git-delta starship vivid
-
-if ! type atuin >/dev/null 2>&1 ; then
-    curl --proto '=https' --tlsv1.2 -sSf https://setup.atuin.sh | bash
-fi
+# https://github.com/atuinsh/atuin
+cargo install zoxide eza bat ripgrep fd-find sd bottom zellij git-delta starship vivid atuin
