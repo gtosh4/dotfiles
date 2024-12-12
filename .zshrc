@@ -116,8 +116,12 @@ unsetopt PATH_DIRS
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
-eval "$(atuin init zsh)"
 
 [[ -e ~/.aliases ]] && source ~/.aliases
 [[ -e ~/.zshkeys ]] && source ~/.zshkeys
 
+
+if type atuin >/dev/null 2>&1 ; then
+    . "$HOME/.atuin/bin/env"
+    eval "$(atuin init zsh)"
+fi
