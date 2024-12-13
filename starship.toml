@@ -2,7 +2,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """($username$hostname:)$directory$character"""
-right_format = """$golang$python$rust"""
+# right_format = """$golang$python$rust"""
 add_newline = false
 
 # Replace the "❯" symbol in the prompt with "➜"

@@ -119,4 +119,5 @@ rustup update
 # https://starship.rs/
 # https://github.com/sharkdp/vivid
 # https://github.com/atuinsh/atuin
-cargo install zoxide eza bat ripgrep fd-find sd bottom zellij git-delta starship vivid atuin
+# https://github.com/jdx/mise
+cargo install zoxide eza bat ripgrep fd-find sd bottom zellij git-delta starship vivid atuin mise
