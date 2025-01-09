@@ -66,18 +66,13 @@ ln -s -t ~/.emacs.d $DOTFILES/.emacs.d/*
 
 # Base16
 [ ! -d ~/.base16 ] && mkdir ~/.base16
-[ ! -d ~/.base16/xresources ] && git clone --depth 1 https://github.com/base16-project/base16-xresources.git ~/.base16/xresources
-[ ! -d ~/.base16/tomorrow ] && git clone --depth 1 https://github.com/chriskempson/tomorrow-theme ~/.base16/tomorrow
+[ -e ~/.base16/xresources/.git ] && git -C ~/.base16/xresources pull
+[ ! -d ~/.base16/xresources ] && git clone --depth 1 --single-branch https://github.com/base16-project/base16-xresources.git ~/.base16/xresources
+[ -e ~/.base16/tomorrow/.git ] && git -C ~/.base16/tomorrow pull
+[ ! -d ~/.base16/tomorrow ] && git clone --depth 1 --single-branch https://github.com/chriskempson/tomorrow-theme ~/.base16/tomorrow
 
 
-[ ! -d ~/.zgenom ] && git clone --depth 1 https://github.com/jandamm/zgenom.git ~/.zgenom
-
-# Python virtualenv setup
-[ ! -d ~/local ] && mkdir ~/local
-if type python3 >/dev/null 2>&1 && [ ! -d ~/local/py-env ] ; then
-    python3 -m venv ~/local/py-env
-    source ~/local/py-env/bin/activate
-fi
+[ ! -d ~/.zgenom ] && git clone --depth 1 --single-branch https://github.com/jandamm/zgenom.git ~/.zgenom
 
 
 # Add update to crontab
