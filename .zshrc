@@ -50,32 +50,21 @@ fi
 
 function chpwd() {
     emulate -L zsh
+    [[ -o interactive ]] || return
     ls -X
 }
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=yellow,bold'
 
+export PATH="$HOME/.local/bin:$PATH"
+
 [[ -e ~/.zshsys ]] && source ~/.zshsys
 
-dedupe_path() {
-    typeset -a paths result
-    paths=($path)
-
-    while [[ ${#paths} -gt 0 ]]; do
-        p="${paths[1]}"
-        shift paths
-        [[ -z ${paths[(r)$p]} ]] && result+="$p"
-    done
-
-    export PATH=${(j+:+)result}
-}
-
-dedupe_path
 
 # https://github.com/Microsoft/vscode/issues/13189#issuecomment-370427397
 export ELECTRON_TRASH=gio
 
-if type terraform >/dev/null 2>&1 ; then 
+if type terraform >/dev/null 2>&1 ; then
     autoload -U +X bashcompinit && bashcompinit
     complete -o nospace -C /usr/bin/terraform terraform
 fi
@@ -117,7 +106,6 @@ zstyle ':prezto:module:ssh:load' identities 'id_ed25519'
 unsetopt PATH_DIRS
 
 eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
 
 [[ -e ~/.aliases ]] && source ~/.aliases
 [[ -e ~/.zshkeys ]] && source ~/.zshkeys
@@ -130,3 +118,37 @@ fi
 if type mise >/dev/null 2>&1 ; then
     eval "$(mise activate zsh)"
 fi
+
+# zoxide last so its chpwd/precmd hook registers after atuin/mise (silences `zoxide doctor`)
+eval "$(zoxide init zsh)"
+
+
+dedupe_path() {
+    typeset -a paths result
+    paths=($path)
+
+    while [[ ${#paths} -gt 0 ]]; do
+        p="${paths[1]}"
+        shift paths
+        [[ -z ${paths[(r)$p]} ]] && result+="$p"
+    done
+
+    export PATH=${(j+:+)result}
+}
+
+dedupe_path
+
+# bun completions
+[ -s "/var/home/gordon/.bun/_bun" ] && source "/var/home/gordon/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# peon-ping quick controls
+_peon_ping_dir="${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hooks/peon-ping"
+if [ -f "$_peon_ping_dir/peon.sh" ]; then
+    alias peon="bash '$_peon_ping_dir/peon.sh'"
+    [ -f "$_peon_ping_dir/completions.bash" ] && source "$_peon_ping_dir/completions.bash"
+fi
+unset _peon_ping_dir
